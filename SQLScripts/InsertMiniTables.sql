@@ -30,8 +30,11 @@ INSERT INTO characterascension (material) VALUES ('Light');
 
 --domainname
 INSERT INTO domainname (domain) VALUES ('Forsaken_Rift');
+INSERT INTO domainname (domain) VALUES ('Cecilia_Garden');
 INSERT INTO domainname (domain) VALUES ('Taishan_Mansion');
+INSERT INTO domainname (domain) VALUES ('Hidden_Palace_of_Lianshan_Formula');
 INSERT INTO domainname (domain) VALUES ('Violet_Court');
+INSERT INTO domainname (domain) VALUES ('Court_of_Flowing_Sand');
 
 --weapontype
 INSERT INTO weapontype (type) VALUES ('Sword');

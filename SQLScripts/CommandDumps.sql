@@ -83,8 +83,8 @@ UPDATE characters SET ascensionmat = 9 WHERE domainname = 'violet_court' AND asc
 
 --domainname
 UPDATE characters SET domainname = 1 WHERE region = 1;
-UPDATE characters SET domainname = 2 WHERE region = 2;
-UPDATE characters SET domainname = 3 WHERE region = 3;
+UPDATE characters SET domainname = 3 WHERE region = 2;
+UPDATE characters SET domainname = 5 WHERE region = 3;
 
 --CHAR.WEAPON
 --sword

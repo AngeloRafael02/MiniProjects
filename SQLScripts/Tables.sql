@@ -44,7 +44,7 @@ CREATE TABLE characterAscension (
 
 CREATE TABLE DomainName (
     id BIGSERIAL NOT NULL PRIMARY KEY,
-    domain VARCHAR(20)  --implement NOT NULL, After values is set
+    domain VARCHAR(40)  --implement NOT NULL, After values is set
 );
 
 CREATE TABLE Weapontype (
