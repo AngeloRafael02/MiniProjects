@@ -1,10 +1,10 @@
-const countdown = ()=>{
 
+setInterval(countdown = () => {
     function getResetDay() {
         var now = new Date();
         var ResetDay = new Date();
-        ResetDay.setDate(now.getDate() + (8 - 1 - now.getDay() + 7) % 7 + 1); //Monday
-        ResetDay.setHours(4, 0, 0, 0); //4:00 AM
+            ResetDay.setDate(now.getDate() + (8 - 1 - now.getDay() + 7) % 7 + 1); //Monday
+            ResetDay.setHours(4, 0, 0, 0); //4:00 AM
         return ResetDay;
     }
     const now = new Date().getTime();
@@ -25,9 +25,8 @@ const countdown = ()=>{
     document.querySelector('.hour').innerText = textHour;
     document.querySelector('.minute').innerText = textMinute;
     document.querySelector('.second').innerText = textSecond;
-}
+},1000);
 
-if (countdown().gap < 0){
-    countdown();
+if (countdown.gap < 0){
+    setInterval(countdown(), 1000);
 }
-setInterval(setInterval(countdown,1000),604800);
