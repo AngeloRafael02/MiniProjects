@@ -28,7 +28,11 @@ SELECT characters.name, characters.star, elements.element, weapontype.type, regi
     JOIN characterascension ON characters.ascensionmat = characterascension.id
     WHERE characters.ascensiondayid = 3 ORDER BY characters.id ASC;
 
-SELECT weapons.name, weapons.star, regions.region, weapons.domainname, weapons.ascensionmat, ascensiondays.day FROM weapons INNER JOIN ascensiondays ON weapons.ascensiondayid = ascensiondays.id JOIN regions ON weapons.region = regions.id WHERE weapons.ascensiondayid = 1 ORDER BY weapons.id ASC;
+SELECT weapons.name, weapons.star, regions.region, domainname.name, weapons.ascensionmat, ascensiondays.day FROM weapons 
+    INNER JOIN ascensiondays ON weapons.ascensiondayid = ascensiondays.id 
+    JOIN domainname ON weapons.domainname = domainname.id
+    JOIN regions ON weapons.region = regions.id WHERE weapons.ascensiondayid = 1 ORDER BY weapons.id ASC;
+
 SELECT weapons.name, weapons.star, regions.region, weapons.domainname, weapons.ascensionmat, ascensiondays.day FROM weapons INNER JOIN ascensiondays ON weapons.ascensiondayid = ascensiondays.id JOIN regions ON weapons.region = regions.id WHERE weapons.ascensiondayid = 2 ORDER BY weapons.id ASC;
 SELECT weapons.name, weapons.star, regions.region, weapons.domainname, weapons.ascensionmat, ascensiondays.day FROM weapons INNER JOIN ascensiondays ON weapons.ascensiondayid = ascensiondays.id JOIN regions ON weapons.region = regions.id WHERE weapons.ascensiondayid = 3 ORDER BY weapons.id ASC;
 
