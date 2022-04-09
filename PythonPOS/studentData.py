@@ -1,4 +1,3 @@
-
 try:
     StudentName = str(input("Enter your Name: "))
     StudentID = int(input("Enter Student ID: "))
@@ -16,8 +15,3 @@ credentials = {
     "Section" : Section,
     "Budget" : 150
 }
-
-
-
-
-

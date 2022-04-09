@@ -37,6 +37,7 @@ def display(wallet):
                         else:
                             Menu.Soda.inventory -= 1
                             wallet -= Menu.Soda.price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -61,6 +62,7 @@ def display(wallet):
                         else:
                             Menu.BottledWater.inventory -= 1
                             wallet -= Menu.BottledWater.price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -85,6 +87,7 @@ def display(wallet):
                         else:
                             Menu.Coffee.inventory -= 1
                             wallet -= Menu.Coffee.price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -109,6 +112,7 @@ def display(wallet):
                         else:
                             Menu.Tea.inventory -= 1
                             wallet -= Menu.Tea.price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -133,6 +137,7 @@ def display(wallet):
                         else:
                             Menu.Bread.inventory -= 1
                             wallet -= Menu.Bread.price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -157,6 +162,7 @@ def display(wallet):
                         else:
                             Menu.Apple .inventory -= 1
                             wallet -= Menu.Apple .price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -181,6 +187,7 @@ def display(wallet):
                         else:
                             Menu.Banana .inventory -= 1
                             wallet -= Menu.Banana .price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -205,6 +212,7 @@ def display(wallet):
                         else:
                             Menu.Oranges .inventory -= 1
                             wallet -= Menu.Oranges .price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -229,6 +237,7 @@ def display(wallet):
                         else:
                             Menu.Tapsilog .inventory -= 1
                             wallet -= Menu.Tapsilog .price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -253,6 +262,7 @@ def display(wallet):
                         else:
                             Menu.Porksilog .inventory -= 1
                             wallet -= Menu.Porksilog .price
+                    print("Wallet: " + strWallet)
                     print("Transaction Complete.\n")
                     display(wallet)
                 elif confirm.lower() == 'n':
@@ -261,8 +271,8 @@ def display(wallet):
                 print(error)
 
 def main():
-    import login
-    wallet = login.credentials.get("Budget")
+    import studentData
+    wallet = studentData.credentials.get("Budget")
     display(wallet)   
 
 main()
