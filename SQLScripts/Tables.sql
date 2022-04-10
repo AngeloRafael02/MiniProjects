@@ -42,6 +42,11 @@ CREATE TABLE characterAscension (
     material VARCHAR(20)  --implement NOT NULL, After values is set
 );
 
+CREATE TABLE weaponAscension (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    material VARCHAR(20)
+);
+
 CREATE TABLE DomainName (
     id BIGSERIAL NOT NULL PRIMARY KEY,
     domain VARCHAR(40)  --implement NOT NULL, After values is set
