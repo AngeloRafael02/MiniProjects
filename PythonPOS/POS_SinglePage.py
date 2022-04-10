@@ -6,61 +6,63 @@ def login():
     """
     This function for taking and storing student data into a dictionary
     """
-    try:
-        StudentName = str(input("Enter your Name: "))
-        StudentID = int(input("Enter Student ID: "))
-        Year = str(input("Enter Year: "))
-        Course = str(input("Enter Course: "))
-        Section = str(input("Enter Section: "))
-    except Exception as error:
-        print(error)
+    while True:
+        try:
+            StudentName_251 = str(input("Enter your Name: "))
+            StudentID_251  = int(input("Enter your Student ID: "))
+            Year_251  = str(input("Enter your Year: "))
+            Course_251  = str(input("Enter your Course: "))
+            Section_251  = str(input("Enter your Section: "))
+            break
+        except Exception as error:
+            print(error)
 
     global credentials
     credentials = {
-        "StudentName" : StudentName,
-        "StudentID": StudentID,
-        "Year" : Year,
-        "Course" : Course,
-        "Section" : Section,
-        "Budget" : 150
+        "StudentName" : StudentName_251 ,
+        "StudentID": StudentID_251 ,
+        "Year" : Year_251 ,
+        "Course" : Course_251 ,
+        "Section" : Section_251 ,
+        "Budget" : float(150.00)
     }
     return credentials
 
 
 class Order:
-    def __init__(self,price,inventory):
+    def __init__(self, price_251 ,inventory_251 ):
         """This Constructor function is used to create the Objects and declare its methods and attributes"""
-        self.price = price
-        self.inventory = inventory
+        self.price = float(price_251) 
+        self.inventory = inventory_251 
     
-    def purchase(self,wallet):
+    def purchase(self,wallet_251 ):
         """This method is called when an Object is to be purchased"""
-        strWallet = str(wallet)
-        worth = str(self.price)
-        stock = str(self.inventory)
-        print("Wallet: P" + strWallet)
-        print("Price: P" + worth)
-        print("Available: "+ stock)
+        strWallet_251  = str(wallet_251 )
+        worth_251  = str(self.price)
+        stock_251  = str(self.inventory)
+        print("\nWallet: P" + strWallet_251 )
+        print("Price: P" + worth_251 )
+        print("Available: "+ stock_251 )
         try:
             confirm = str(input("Confirm Purchase? y/n "))
             if confirm.lower() == 'y':
                 if self.inventory <= 0:
                     print("\nSorry, we ran out of stock")
-                    print("Transaction Cancelled")
+                    print("Transaction Cancelled\n")
                 elif self.inventory > 0:
-                    if (wallet - self.price) < 0:
+                    if (wallet_251  - self.price) < 0:
                         print("\nSorry, Wallet Amount not enough")
-                        print("Transaction Cancelled")
+                        print("Transaction Cancelled\n")
                     else:
                         self.inventory -= 1
-                        credentials["Budget"] = wallet - self.price
-                        change = str(credentials["Budget"])
+                        credentials["Budget"] = wallet_251  - self.price
+                        change_251  = str(credentials["Budget"])
                         print("Transaction Complete.")
-                        print("Wallet: P" + change + "\n" )
-                        return change
+                        print("Wallet: P" + change_251  + "\n" )
+                        return change_251 
             elif confirm.lower() == 'n':
                 print("Transaction Cancelled")
-                print("Wallet: P" + strWallet + "\n")
+                print("Wallet: P" + strWallet_251  + "\n")
         except Exception as error:
             print(error)
 
@@ -80,8 +82,8 @@ Porksilog = Order(80.99, 4)
 def display(wallet,name):
     """
                                 WELCOME TO THE PROGRAM!
-    This is a program made to help students to order their food and drink without human interaction.
-    Type 'Quit' to exit program
+    This is a program made to help students to order their food and drinks without human interaction.
+    Type 'Profile' to access User Information. | Type 'Quit' to exit program.
     MENU
         DRINKS:                       SNACKS:                 MEALS:
         > Soda ----------- P29.95     > Bread ---- P15.00     > Tapsilog ---- P80.99
@@ -89,34 +91,38 @@ def display(wallet,name):
         > Coffee --------- P50.00     > Banana --- P15.00
         > Tea ------------ P35.50     > Oranges -- 25.10
     """
-
     strWallet = str(wallet)
     print(display.__doc__)  
     print("Welcome, " + name)
     print("Wallet: P" + strWallet)
-    Food = str(input("Please Input what you like: "))
+    Food_251 = str(input("Please Input what you like: "))
     try:
-        if Food.lower() == "soda":
+        if Food_251.lower() == "soda":
             Soda.purchase(wallet)           
-        elif Food.lower() == "bottled water":
+        elif Food_251.lower() == "bottled water":
             BottleWater.purchase(wallet)
-        elif Food.lower() == "coffee":
+        elif Food_251.lower() == "coffee":
             Coffee.purchase(wallet)
-        elif Food.lower() == "tea":
+        elif Food_251.lower() == "tea":
             Tea.purchase(wallet)
-        elif Food.lower() == "bread":
+        elif Food_251.lower() == "bread":
             Bread.purchase(wallet)
-        elif Food.lower() == "apple":
+        elif Food_251.lower() == "apple":
             Apple.purchase(wallet)
-        elif Food.lower() == "banana":
+        elif Food_251.lower() == "banana":
             Banana.purchase(wallet)
-        elif Food.lower() == "oranges":
+        elif Food_251.lower() == "oranges":
             Oranges.purchase(wallet)
-        elif Food.lower() == "tapsilog":
+        elif Food_251.lower() == "tapsilog":
             Tapsilog.purchase(wallet)
-        elif Food.lower() == "porksilog":
+        elif Food_251.lower() == "porksilog":
             Porksilog.purchase(wallet)
-        elif Food.lower() == "quit":
+        elif Food_251.lower() == "profile":
+            print("\n")
+            print("User Information:")
+            for key,value in credentials.items():
+                print("> " + key + " - " + str(value))
+        elif Food_251.lower() == "quit":
             return 1
     except Exception as error:
             print(error)
@@ -128,6 +134,6 @@ def main():
     while True:
         if display(credentials["Budget"],credentials["StudentName"]) == 1:
             break
-    print("Thanks you for using the Program!")
+    print("\nThanks you for using the Program!")
 
 main()
