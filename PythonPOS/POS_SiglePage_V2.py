@@ -9,8 +9,11 @@ class Student():
         self.course = course
         self.section = section
         self.budget = budget
-    def spend(self, cost):
-        return self.budget - cost
+    @staticmethod
+    def spend(wallet, price):
+        return wallet - price
+
+    
 
 class Order():
     def __init__(self,price,inventory):
