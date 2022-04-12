@@ -50,15 +50,15 @@ class Order:
                     print("\nSorry, we ran out of stock")
                     print("Transaction Cancelled\n")
                 elif self.inventory > 0:
-                    if (wallet_251  - self.price) < 0:
+                    if (wallet_251 - self.price) < 0:
                         print("\nSorry, Wallet Amount not enough")
                         print("Transaction Cancelled\n")
                     else:
                         self.inventory -= 1
                         credentials["Budget"] = wallet_251  - self.price
-                        change_251  = str(credentials["Budget"])
+                        change_251 = str(credentials["Budget"])
                         print("Transaction Complete.")
-                        print("Wallet: P" + change_251  + "\n" )
+                        print("Wallet: P" + change_251 + "\n" )
                         return change_251 
             elif confirm.lower() == 'n':
                 print("Transaction Cancelled")
@@ -77,7 +77,6 @@ Banana = Order(15, 5)
 Oranges = Order(25.10, 3)
 Tapsilog = Order(80.99, 5)
 Porksilog = Order(80.99, 4)
-
 
 def display(wallet,name):
     """
@@ -99,7 +98,7 @@ def display(wallet,name):
     try:
         if Food_251.lower() == "soda":
             Soda.purchase(wallet)           
-        elif Food_251.lower() == "bottled water":
+        elif Food_251.lower() == "bottled water" or Food_251.lower() == "bottledwater":
             BottleWater.purchase(wallet)
         elif Food_251.lower() == "coffee":
             Coffee.purchase(wallet)
@@ -128,7 +127,7 @@ def display(wallet,name):
             print(error)
 
 def main():
-    """This is the main function id the main entry point and used to structure the other 
+    """This is the main function and the main entry point and used to structure the other 
         functions as well as to be called to start the program"""
     login()
     while True:
