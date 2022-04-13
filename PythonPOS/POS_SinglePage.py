@@ -35,7 +35,7 @@ class Order:
         self.price = float(price_251) 
         self.inventory = inventory_251 
     
-    def purchase(self,wallet_251 ):
+    def purchase(self,wallet_251):
         """This method is called when an Object is to be purchased"""
         strWallet_251  = str(wallet_251 )
         worth_251  = str(self.price)
