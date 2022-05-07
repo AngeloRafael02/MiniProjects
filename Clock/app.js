@@ -1,5 +1,5 @@
 
-setInterval(countdown = () => {
+setInterval(function countdown(){
     function getResetDay() {
         var now = new Date();
         var ResetDay = new Date();
@@ -27,6 +27,3 @@ setInterval(countdown = () => {
     document.querySelector('.second').innerText = textSecond;
 },1000);
 
-if (countdown.gap < 0){
-    setInterval(countdown(), 1000);
-}

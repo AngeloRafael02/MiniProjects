@@ -55,7 +55,7 @@ class Order:
                         print("Transaction Cancelled\n")
                     else:
                         self.inventory -= 1
-                        credentials["Budget"] = wallet_251  - self.price
+                        credentials["Budget"] = float(wallet_251)  - float(self.price)
                         change_251 = str(credentials["Budget"])
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251 + "\n" )
@@ -125,6 +125,8 @@ def display(wallet,name):
             return 1
     except Exception as error:
             print(error)
+    finally:
+        print("Ending Program...")
 
 def main():
     """This is the main function and the main entry point and used to structure the other 
