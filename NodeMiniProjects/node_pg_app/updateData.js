@@ -1,15 +1,14 @@
 const {pool} = require('./db');
 
-async function updateRow(){
-    const [oldData,NewData,id] = process.argv.slice(3);
+async function updateNameRow(NewData,id){
     try{
-        const del = await pool.query(
-            'DELETE table1 SET $1 = $2 WHERE id = $3'[oldData,NewData,id]
+        const update = await pool.query(
+            `UPDATE table1 SET name = '${NewData}' WHERE id = ${id} ;`
         );
-        console.log("Row Deleted");
+        console.log("Row Updated");
     } catch(error){
         console.log(error);
     }
 }
 
-updateRow();
+updateNameRow("Mikasa",4);

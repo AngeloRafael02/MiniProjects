@@ -1,7 +1,6 @@
 const { pool } = require("./db");
 
-async function insertData() {
-  const [name, age] = process.argv.slice(2);
+async function insertData(name,age) {
   try{
     const res =  await pool.query(
         "INSERT INTO table1 (name,age) VALUES ($1,$2);",[name,age]
@@ -12,4 +11,4 @@ async function insertData() {
   }
 }
 
-insertData();
+insertData("Charles",17);
