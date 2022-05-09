@@ -3,14 +3,14 @@
 {{title}}
 <div class="row">
     <div class="col-md-4"> <!--Clock-->
-        <p>Clock: </p> <app-clock></app-clock>
-        <p>Server Reset: </p><app-timer></app-timer> 
+        Clock:<app-clock></app-clock>
+        Server Reset<app-timer></app-timer> 
     </div>
     <div class="col-md-8"> <!--NavBar-->
         <nav>
             <ul>
-                <li><a href="">Characters</a></li>
-                <li><a href="">Weapons</a></li>
+                <li><a routerLink="/Characters">Characters</a></li>
+                <li><a routerLink="/Weapons">Weapons</a></li>
             </ul>
         </nav>
         <nav>
@@ -29,7 +29,7 @@
 <div class="col-md-12"> <!--View-->
     <router-outlet></router-outlet>
 </div>
-<div> <!--ToDoList-->
+<div class="col-md-12"> <!--ToDoList-->
 
 </div>
 </div>

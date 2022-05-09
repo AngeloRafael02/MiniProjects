@@ -1,10 +1,9 @@
 const {pool} = require('./db');
 
-async function deleteRow(){
-    const [id] = process.argv.slice(1);
+async function deleteRow(id){
     try{
         const del = await pool.query(
-            'DELETE FROM table1 WHERE id = $1;'[id]
+            "DELETE FROM table1 WHERE id = " + id
         );
         console.log("Row Deleted");
     } catch(error){
@@ -12,4 +11,4 @@ async function deleteRow(){
     }
 }
 
-deleteRow();
+deleteRow(3);
