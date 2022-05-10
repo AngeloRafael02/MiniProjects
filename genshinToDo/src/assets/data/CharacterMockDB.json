@@ -1,0 +1,4 @@
+[
+    {"star":4, "name":"Amber", "weaponType":"Bow", "element":"Pyro", "region":"Mondstadt", "domain":"Forsaken Rift", "material":"Freedom", "availability":["Monday","Thursday","Sunday"]},
+    {"star":4, "name":"Kaeya", "weaponType":"Sword", "element":"Cryo", "region":"Mondstadt", "domain":"Forsaken Rift", "material":"Ballad", "availability":["Wednesday","Saturday","Sunday"]}
+]
