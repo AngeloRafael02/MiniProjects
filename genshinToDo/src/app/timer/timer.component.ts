@@ -48,7 +48,7 @@ export class TimerComponent implements OnInit {
     this.clsDay = numDay.toLocaleString();
     this.clsHour = numHour.toLocaleString();
       this.clsHour = numHour < 10 ? '0' + this.clsHour : this.clsHour;
-      this.clsHour = numHour == 10 ? '00' : this.clsHour;
+      this.clsHour = numHour == 60 ? '00' : this.clsHour;
     this.clsMinute = numMinute.toLocaleString();
       this.clsMinute = numMinute < 10 ? '0' + this.clsMinute : this.clsMinute;
       this.clsMinute = numMinute == 60 ? '00' : this.clsMinute;

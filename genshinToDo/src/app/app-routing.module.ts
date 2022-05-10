@@ -4,10 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 //COMPONENTS
 import { CharacterViewComponent } from './character-view/character-view.component';
 import { WeaponViewComponent } from './weapon-view/weapon-view.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
+  {path:'', redirectTo:'/Characters', pathMatch:'full'},
   {path:"Characters", component:CharacterViewComponent},
   {path:"Weapons", component:WeaponViewComponent},
+  {path:"**", component:NotFoundComponent} //Wildcard Route
 ];
 
 @NgModule({
@@ -17,4 +20,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [CharacterViewComponent, WeaponViewComponent];
+export const routingComponents = [
+  CharacterViewComponent,
+  WeaponViewComponent, 
+  NotFoundComponent];
