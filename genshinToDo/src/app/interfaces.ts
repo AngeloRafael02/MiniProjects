@@ -1,4 +1,5 @@
 export interface characterInterface {
+    id:number,
     star:Number,
     name:String,
     weaponType:String,
@@ -10,6 +11,7 @@ export interface characterInterface {
 }
 
 export interface weaponInterface{
+    id:Number,
     star:Number,
     name:String,
     secondaryStat:String
