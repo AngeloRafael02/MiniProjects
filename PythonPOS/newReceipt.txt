@@ -1,0 +1,14 @@
+Welcome to Ka Tasyo's Eatery
+User: Angelo Rafael
+-------------------------------
+> Tapsilog - P80.99
+> Bread - P15.0
+> Banana - P15.0
+> Soda - P29.95
+-------------------------------
+Total: 					P140.94
+Payment: 				P150
+Change: 				P9.060
+-------------------------------
+Thank You for Purchasing in 
+Ka Tasyo's Eatery! :)

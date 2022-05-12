@@ -1,6 +1,9 @@
 # Point-of-Sales System
 # Made by Angelo Rafael Recio, CPE2A
 # Student ID: 2020251
+#NOTE to self: 
+# - rewrite file address when uploading to other IDEs/Repositories
+# - include "newReceipt.txt" file in uploading
 
 def login():
     """
@@ -24,23 +27,42 @@ def login():
         "Year" : Year_251 ,
         "Course" : Course_251 ,
         "Section" : Section_251 ,
+
+        "defaultInitialMoney": int(150),
+        "TransactionTotal": float(0),
         "Budget" : float(150.00)
     }
     return credentials
 
+def welcomeReceipt(shopName):
+    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'w')
+    f.write("Welcome to " + shopName + "\n"\
+          + "User: " + credentials["StudentName"] + "\n"\
+          + "-------------------------------" + "\n")
+    f.close()
+
+def endingReceipt():
+    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a')
+    f.write("-------------------------------\n"\
+        + "Thank You for Purchasing in \n"\
+        + "Ka Tasyo's Eatery! :)")
+    f.close()
+
+
 
 class Order:
-    def __init__(self, price_251 ,inventory_251 ):
+    def __init__(self,name_251, price_251 ,inventory_251 ):
         """This Constructor function is used to create the Objects and declare its methods and attributes"""
+        self.name = str(name_251)
         self.price = float(price_251) 
-        self.inventory = inventory_251 
+        self.inventory = int(inventory_251) 
     
     def purchase(self,wallet_251):
         """This method is called when an Object is to be purchased"""
         strWallet_251  = str(wallet_251 )
         worth_251  = str(self.price)
         stock_251  = str(self.inventory)
-        print("\nWallet: P" + strWallet_251 )
+        print("\nWallet: P" + strWallet_251[0:5] )
         print("Price: P" + worth_251 )
         print("Available: "+ stock_251 )
         try:
@@ -54,9 +76,13 @@ class Order:
                         print("\nSorry, Wallet Amount not enough")
                         print("Transaction Cancelled\n")
                     else:
-                        self.inventory -= 1
-                        credentials["Budget"] = float(wallet_251)  - float(self.price)
+                        self.inventory -= 1 # inventory decrease
+                        credentials["Budget"] = float(wallet_251)  - float(self.price) #budget changed
                         change_251 = str(credentials["Budget"])
+                        credentials["TransactionTotal"] += self.price
+                        f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a') #purchase appended
+                        f.write("> " + self.name + " - P" + worth_251 + "\n")
+                        f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251 + "\n" )
                         return change_251 
@@ -64,25 +90,26 @@ class Order:
                 print("Transaction Cancelled")
                 print("Wallet: P" + strWallet_251  + "\n")
         except Exception as error:
-            print(error)
+            print(error)        
+            
 
 #Objects Made by the Constructor
-Soda = Order(29.95, 4)
-BottleWater = Order(20, 4)
-Coffee = Order(50, 2)
-Tea = Order(35, 2)
-Bread = Order(15, 1)
-Apple = Order(20.50, 5)
-Banana = Order(15, 5)
-Oranges = Order(25.10, 3)
-Tapsilog = Order(80.99, 5)
-Porksilog = Order(80.99, 4)
+Soda = Order("Soda", 29.95, 4)
+BottleWater = Order("Bottled Water",20, 4)
+Coffee = Order("Coffee", 50, 2) 
+Tea = Order("Tea", 35, 2)
+Bread = Order("Bread", 15, 1)
+Apple = Order("Apple",20.50, 5)
+Banana = Order("Banana", 15, 5)
+Oranges = Order("Orange", 25.10, 3)
+Tapsilog = Order("Tapsilog",80.99, 5)
+Porksilog = Order("Porksilog",80.99, 4)
 
 def display(wallet,name):
     """
                                 WELCOME TO THE PROGRAM!
     This is a program made to help students to order their food and drinks without human interaction.
-    Type 'Profile' to access User Information. | Type 'Quit' to exit program.
+    Type 'Profile' to access User Information. | Type 'Quit' to Exit program/End transaction.
     MENU
         DRINKS:                       SNACKS:                 MEALS:
         > Soda ----------- P29.95     > Bread ---- P15.00     > Tapsilog ---- P80.99
@@ -93,7 +120,7 @@ def display(wallet,name):
     strWallet = str(wallet)
     print(display.__doc__)  
     print("Welcome, " + name)
-    print("Wallet: P" + strWallet)
+    print("Wallet: P" + strWallet[0:5])
     Food_251 = str(input("Please Input what you like: "))
     try:
         if Food_251.lower() == "soda":
@@ -122,6 +149,12 @@ def display(wallet,name):
             for key,value in credentials.items():
                 print("> " + key + " - " + str(value))
         elif Food_251.lower() == "quit":
+            f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a')
+            f.write("-------------------------------\n"\
+                  + "Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) + "\n"\
+                  + "Payment: \t\t\t\tP" + str(credentials["defaultInitialMoney"]) + "\n"\
+                  + "Change: \t\t\t\tP" + str(credentials["Budget"])[0:5] + "\n")
+            f.close()
             return 1
     except Exception as error:
             print(error)
@@ -132,9 +165,11 @@ def main():
     """This is the main function and the main entry point and used to structure the other 
         functions as well as to be called to start the program"""
     login()
+    welcomeReceipt("Ka Tasyo's Eatery")
     while True:
         if display(credentials["Budget"],credentials["StudentName"]) == 1:
             break
+    endingReceipt()
     print("\nThanks you for using the Program!")
 
 main()
