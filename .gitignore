@@ -3,12 +3,16 @@ FlaskToDoList/.venv
 
 PythonPOS/tempCodeRunnerFile.py
 PythonPOS/__pycache__
+PythonPOS/HtmlReceipt.html
+PythonPOS/newReceipt.txt
 PythonPOS/test.py
 PythonPOS/test1.py
 
 tempCodeRunnerFile.py
 
 NodeMiniProjects/node_pg_app/node_modules
+
+
 
 MiniProjects/genshinToDo/.vscode
 MiniProjects/genshinToDo/.angular
