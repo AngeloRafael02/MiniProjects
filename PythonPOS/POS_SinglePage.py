@@ -3,7 +3,7 @@
 # Student ID: 2020251
 #NOTE to self: 
 # - rewrite file address when uploading to other IDEs/Repositories
-# - include "newReceipt.txt" file in uploading
+# - include empty "newReceipt.txt" file in uploading. or not since it will write itself anyways
 
 def login():
     """
@@ -35,8 +35,8 @@ def login():
     return credentials
 
 def welcomeReceipt(shopName):
-    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'w')
-    f.write("Welcome to " + shopName + "\n"\
+    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'w') #NOTE: Do replace file address when migrating to other files
+    f.write( shopName + "\n"\
           + "User: " + credentials["StudentName"] + "\n"\
           + "-------------------------------" + "\n")
     f.close()
@@ -48,14 +48,21 @@ def endingReceipt():
         + "Ka Tasyo's Eatery! :)")
     f.close()
 
-
-
 class Order:
     def __init__(self,name_251, price_251 ,inventory_251 ):
         """This Constructor function is used to create the Objects and declare its methods and attributes"""
         self.name = str(name_251)
         self.price = float(price_251) 
         self.inventory = int(inventory_251) 
+
+    @staticmethod
+    def indentMaker(name):
+        if len(name) == 4 or len(name) == 5:
+            return "\t\t\t\t\t"
+        elif len(name) == 6 or len(name) == 7 or len(name) == 8 or len(name) == 9:
+            return "\t\t\t\t"
+        elif len(name) > 9:
+            return "\t\t\t"
     
     def purchase(self,wallet_251):
         """This method is called when an Object is to be purchased"""
@@ -81,7 +88,7 @@ class Order:
                         change_251 = str(credentials["Budget"])
                         credentials["TransactionTotal"] += self.price
                         f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a') #purchase appended
-                        f.write("> " + self.name + " - P" + worth_251 + "\n")
+                        f.write("> "+ self.name + self.indentMaker(self.name) + "P" + worth_251 + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251 + "\n" )
@@ -105,11 +112,11 @@ Oranges = Order("Orange", 25.10, 3)
 Tapsilog = Order("Tapsilog",80.99, 5)
 Porksilog = Order("Porksilog",80.99, 4)
 
-def display(wallet,name):
+def display(wallet):
     """
                                 WELCOME TO THE PROGRAM!
     This is a program made to help students to order their food and drinks without human interaction.
-    Type 'Profile' to access User Information. | Type 'Quit' to Exit program/End transaction.
+    Type 'Profile' to access User Information. | Type 'Quit'/'End' to Exit program/End transaction.
     MENU
         DRINKS:                       SNACKS:                 MEALS:
         > Soda ----------- P29.95     > Bread ---- P15.00     > Tapsilog ---- P80.99
@@ -119,7 +126,7 @@ def display(wallet,name):
     """
     strWallet = str(wallet)
     print(display.__doc__)  
-    print("Welcome, " + name)
+    print("Welcome, " + credentials["StudentName"])
     print("Wallet: P" + strWallet[0:5])
     Food_251 = str(input("Please Input what you like: "))
     try:
@@ -148,7 +155,7 @@ def display(wallet,name):
             print("User Information:")
             for key,value in credentials.items():
                 print("> " + key + " - " + str(value))
-        elif Food_251.lower() == "quit":
+        elif Food_251.lower() == "quit" or Food_251.lower() == "end":
             f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a')
             f.write("-------------------------------\n"\
                   + "Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) + "\n"\
@@ -167,7 +174,7 @@ def main():
     login()
     welcomeReceipt("Ka Tasyo's Eatery")
     while True:
-        if display(credentials["Budget"],credentials["StudentName"]) == 1:
+        if display(credentials["Budget"]) == 1:
             break
     endingReceipt()
     print("\nThanks you for using the Program!")
