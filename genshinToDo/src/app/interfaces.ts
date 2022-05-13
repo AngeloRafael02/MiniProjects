@@ -1,5 +1,5 @@
 export interface characterInterface {
-    id:number,
+    id:Number,
     star:Number,
     name:String,
     weaponType:String,
@@ -14,7 +14,7 @@ export interface weaponInterface{
     id:Number,
     star:Number,
     name:String,
-    secondaryStat:String
+    secondaryStat:String,
     weaponType:String,
     domain:String,
     material:String,

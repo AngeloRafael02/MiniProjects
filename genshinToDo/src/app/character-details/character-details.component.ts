@@ -37,15 +37,16 @@ export class CharacterDetailsComponent implements OnInit {
     });
   }
   
-  prev(){
+  prev():void{
     let prevId:number = this.charNumber - 1;
     if (prevId < 0) { prevId = 0; }
     this.router.navigate(['/Characters',prevId])
   }
-  back(){
-    this.router.navigate(['/Characters']);
+  back():void{
+    let backId = this.charNumber 
+    this.router.navigate(['/Characters', {id:backId}]);
   }
-  next(){
+  next():void{
     let nextId:number = this.charNumber + 1;
     this.router.navigate(["/Characters",nextId])
   }

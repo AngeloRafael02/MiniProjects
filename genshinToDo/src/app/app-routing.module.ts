@@ -8,7 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'/Characters', pathMatch:'full'},
+  {path:'', redirectTo:'/Characters', pathMatch:'full'}, //default Route
   {path:"Characters", component:CharacterViewComponent},
   {path:"Characters/:id", component:CharacterDetailsComponent},
   {path:"Weapons", component:WeaponViewComponent},
@@ -22,7 +22,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [
+export const routingComponents = [ //Stored all components in an array for export in app.module.ts
   CharacterViewComponent,
   CharacterDetailsComponent,
   WeaponViewComponent, 

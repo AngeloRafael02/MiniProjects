@@ -1,9 +1,9 @@
 # Point-of-Sales System
 # Made by Angelo Rafael Recio, CPE2A
 # Student ID: 2020251
-#NOTE to self: 
-# - rewrite file address when uploading to other IDEs/Repositories
-# - include empty "newReceipt.txt" file in uploading. or not since it will write itself anyways
+# NOTE to self: 
+# - rewrite "newReceipt.html" file address when uploading to other IDEs/Repositories
+# - include empty "newReceipt.html" file in uploading. or not if it will write itself anyways
 
 def login():
     """
@@ -12,10 +12,10 @@ def login():
     while True:
         try:
             StudentName_251 = str(input("Enter your Name: "))
-            StudentID_251  = int(input("Enter your Student ID: "))
-            Year_251  = str(input("Enter your Year: "))
-            Course_251  = str(input("Enter your Course: "))
-            Section_251  = str(input("Enter your Section: "))
+            StudentID_251 = int(input("Enter your Student ID: "))
+            Year_251 = str(input("Enter your Year: "))
+            Course_251 = str(input("Enter your Course: "))
+            Section_251 = str(input("Enter your Section: "))
             break
         except Exception as error:
             print(error)
@@ -35,34 +35,44 @@ def login():
     return credentials
 
 def welcomeReceipt(shopName):
-    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'w') #NOTE: Do replace file address when migrating to other files
-    f.write( shopName + "\n"\
-          + "User: " + credentials["StudentName"] + "\n"\
-          + "-------------------------------" + "\n")
-    f.close()
+    """Prints first at the receipt, after credentials have been filled with data"""
+    try:
+        f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'w') #NOTE: Do replace file address when migrating to other files
+        f.write( shopName + "<br>" + "\n" \
+            + "User: " + credentials["StudentName"] + "<br>" + "\n" \
+            + "-------------------------------" + "<br>" + "\n")
+    except Exception as error:
+        print(error)  
+        f.close()
+    finally:
+        f.close()
 
 def endingReceipt():
-    f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a')
-    f.write("-------------------------------\n"\
-        + "Thank You for Purchasing in \n"\
-        + "Ka Tasyo's Eatery! :)")
-    f.close()
+    """Prints at the End of the Receipt After the Transactions is Finished"""
+    try:
+        f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a')
+        f.write("-------------------------------" + "<br>" + "\n" \
+            + "Thank You for Purchasing in" + "<br>" + "\n"\
+            + "Ka Tasyo's Eatery! :)" + "<br>" + "\n")
+        f.close()
+    finally:
+        f.close()
 
 class Order:
     def __init__(self,name_251, price_251 ,inventory_251 ):
         """This Constructor function is used to create the Objects and declare its methods and attributes"""
-        self.name = str(name_251)
-        self.price = float(price_251) 
-        self.inventory = int(inventory_251) 
+        self.name:str = str(name_251)
+        self.price:float = float(price_251) 
+        self.inventory:int = int(inventory_251) 
 
     @staticmethod
     def indentMaker(name):
         if len(name) == 4 or len(name) == 5:
-            return "\t\t\t\t\t"
+            return "\t\t\t\t\t" + "&nbsp;"
         elif len(name) == 6 or len(name) == 7 or len(name) == 8 or len(name) == 9:
-            return "\t\t\t\t"
+            return "\t\t\t\t" + "&nbsp;"
         elif len(name) > 9:
-            return "\t\t\t"
+            return "\t\t\t" + "&nbsp;"
     
     def purchase(self,wallet_251):
         """This method is called when an Object is to be purchased"""
@@ -87,8 +97,8 @@ class Order:
                         credentials["Budget"] = float(wallet_251)  - float(self.price) #budget changed
                         change_251 = str(credentials["Budget"])
                         credentials["TransactionTotal"] += self.price
-                        f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a') #purchase appended
-                        f.write("> "+ self.name + self.indentMaker(self.name) + "P" + worth_251 + "\n")
+                        f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a') #purchase appended
+                        f.write("> "+ self.name + self.indentMaker(self.name) + "P" + worth_251  + "<br>" + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251 + "\n" )
@@ -156,12 +166,18 @@ def display(wallet):
             for key,value in credentials.items():
                 print("> " + key + " - " + str(value))
         elif Food_251.lower() == "quit" or Food_251.lower() == "end":
-            f = open('MiniProjects/PythonPOS/newReceipt.txt', 'a')
-            f.write("-------------------------------\n"\
-                  + "Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) + "\n"\
-                  + "Payment: \t\t\t\tP" + str(credentials["defaultInitialMoney"]) + "\n"\
-                  + "Change: \t\t\t\tP" + str(credentials["Budget"])[0:5] + "\n")
-            f.close()
+            try:
+                f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a')
+                f.write("-------------------------------" + "<br>" + "\n"\
+                    + "Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) + "<br>" + "\n"\
+                    + "Payment: \t\t\t\tP" + str(credentials["defaultInitialMoney"]) + "<br>" + "\n"\
+                    + "Change: \t\t\t\tP" + str(credentials["Budget"])[0:5] + "<br>" + "\n")
+                f.close()
+            except Exception as error:
+                print(error)  
+                f.close()
+            finally:
+                f.close()
             return 1
     except Exception as error:
             print(error)
