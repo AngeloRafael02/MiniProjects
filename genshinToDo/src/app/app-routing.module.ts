@@ -6,12 +6,14 @@ import { CharacterViewComponent } from './character-view/character-view.componen
 import { WeaponViewComponent } from './weapon-view/weapon-view.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { CharacterDetailsComponent } from './character-details/character-details.component';
+import { WeaponDetailsComponent } from './weapon-details/weapon-details.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/Characters', pathMatch:'full'}, //default Route
   {path:"Characters", component:CharacterViewComponent},
-  {path:"Characters/:id", component:CharacterDetailsComponent},
+    {path:"Characters/:id", component:CharacterDetailsComponent},
   {path:"Weapons", component:WeaponViewComponent},
+    {path:"Weapons/:id", component:WeaponDetailsComponent},
   {path:"**", component:NotFoundComponent} //Wildcard Route
 ];
 
@@ -26,4 +28,5 @@ export const routingComponents = [ //Stored all components in an array for expor
   CharacterViewComponent,
   CharacterDetailsComponent,
   WeaponViewComponent, 
+  WeaponDetailsComponent,
   NotFoundComponent];
