@@ -20,3 +20,9 @@ export interface weaponInterface{
     material:String,
     availability:String[]
 }
+
+export interface toDoListInterface{
+    id:Number,
+    toDo:String
+    date:String[]
+}

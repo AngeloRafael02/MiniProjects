@@ -39,7 +39,7 @@ export class CharacterViewComponent implements OnInit {
     });
   }
 
-  onSelect(Character:any):void{ //navigates to a route according to the id number of the character
+  onSelect(Character:characterInterface):void{ //navigates to a route according to the id number of the character
     this.router.navigate(['/Characters', Character.id]);
   }
 
