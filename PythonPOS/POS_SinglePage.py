@@ -12,7 +12,7 @@ def login():
     while True:
         try:
             StudentName_251 = str(input("Enter your Name: "))
-            StudentID_251 = int(input("Enter your Student ID: "))
+            StudentID_251 = str(input("Enter your Student ID: "))
             Year_251 = str(input("Enter your Year: "))
             Course_251 = str(input("Enter your Course: "))
             Section_251 = str(input("Enter your Section: "))
@@ -35,25 +35,50 @@ def login():
     return credentials
 
 def welcomeReceipt(shopName):
-    """Prints first at the receipt, after credentials have been filled with data"""
+    """Prints first at the receipt, after credentials have been filled with data
+    Also sets up styles and CSS"""
     try:
         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'w') #NOTE: Do replace file address when migrating to other files
-        f.write( shopName + "<br>" + "\n" \
-            + "User: " + credentials["StudentName"] + "<br>" + "\n" \
-            + "-------------------------------" + "<br>" + "\n")
+        f.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">')
+        f.write('<style> \
+                    body{  background-image:url(https://i.redd.it/uuqjrkfblih61.jpg); height: 100%; background-position: center; background-size: cover;}\n \
+                    p{ color:white; font-family: Arial; font-size:25px; text-align:center;}\n\
+                    div{ display:flex; justify-content:center;}    \
+                    .btn{ color:white; margin:auto; margin-left:2px; margin-right:2px; }    \n\
+                    span{ font-size: 120%; }\n    \
+                </style><br>\n')
+        f.write('\
+                <script>\n \
+                    function refresh(){ window.location.reload() }\n \
+                    function displayCredits(){ alert("Made By: Angelo Rafael F. Recio :)"); }\n \
+                    function showCredentials(){ alert("Name: '+credentials["StudentName"] + ' | StudentID: ' + credentials["StudentID"] + ' | Year: ' + credentials["Year"] + ' | Course: ' + credentials["Course"]+ ' | Section: ' + credentials["Section"] +'"); }\n \
+                </script>\n')
+        f.write("<div>\
+                    <div class='buttonArr'>\
+                        <button type='button' class='btn btn-info' onclick='refresh()'> Update / Refresh Page </button>\n \
+                        <button  type='button' class='btn btn-info' onclick='displayCredits()'> Credits </button>\n \
+                        <button  type='button' class='btn btn-info' onclick='showCredentials()'> Show Current User </button>\n \
+                    </div>\
+                </div>"\
+                + '<p><span>' + shopName + "</span><br>\n" \
+                + "User: " + credentials["StudentName"] + "<br>\n" \
+                + "-------------------------------" + "</p>\n")
     except Exception as error:
         print(error)  
         f.close()
     finally:
         f.close()
 
-def endingReceipt():
+def HTMLIndent():
+    return "'\n'"        
+
+def endingReceipt(shopName):
     """Prints at the End of the Receipt After the Transactions is Finished"""
     try:
         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a')
-        f.write("-------------------------------" + "<br>" + "\n" \
+        f.write("<p>-------------------------------" + "<br>" + "\n" \
             + "Thank You for Purchasing in" + "<br>" + "\n"\
-            + "Ka Tasyo's Eatery! :)" + "<br>" + "\n")
+            + shopName + "!</p>" + "\n")
         f.close()
     finally:
         f.close()
@@ -98,7 +123,7 @@ class Order:
                         change_251 = str(credentials["Budget"])
                         credentials["TransactionTotal"] += self.price
                         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a') #purchase appended
-                        f.write("> "+ self.name + self.indentMaker(self.name) + "P" + worth_251  + "<br>" + "\n")
+                        f.write("<p> > "+ self.name + self.indentMaker(self.name) + "P" + worth_251  + "</p>" + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251 + "\n" )
@@ -168,10 +193,10 @@ def display(wallet):
         elif Food_251.lower() == "quit" or Food_251.lower() == "end":
             try:
                 f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a')
-                f.write("-------------------------------" + "<br>" + "\n"\
-                    + "Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) + "<br>" + "\n"\
-                    + "Payment: \t\t\t\tP" + str(credentials["defaultInitialMoney"]) + "<br>" + "\n"\
-                    + "Change: \t\t\t\tP" + str(credentials["Budget"])[0:5] + "<br>" + "\n")
+                f.write("<p>-------------------------------" + "</p>" + "\n"\
+                    + "<p>Total: \t\t\t\t\tP" + str(credentials["TransactionTotal"]) +  "</p>\n"\
+                    + "<p>Payment: \t\t\t\tP" + str(credentials["defaultInitialMoney"]) +  "</p>\n"\
+                    + "<p>Change: \t\t\t\tP" + str(credentials["Budget"])[0:5] +  "</p>\n")
                 f.close()
             except Exception as error:
                 print(error)  
@@ -188,11 +213,11 @@ def main():
     """This is the main function and the main entry point and used to structure the other 
         functions as well as to be called to start the program"""
     login()
-    welcomeReceipt("Ka Tasyo's Eatery")
+    welcomeReceipt("Wangshu Inn")
     while True:
         if display(credentials["Budget"]) == 1:
             break
-    endingReceipt()
+    endingReceipt("Wangshu Inn")
     print("\nThanks you for using the Program!")
 
 main()
