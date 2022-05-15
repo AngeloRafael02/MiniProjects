@@ -2,7 +2,7 @@
 # Made by Angelo Rafael Recio, CPE2A
 # Student ID: 2020251
 # NOTE to self: 
-# - rewrite "newReceipt.html" file address when uploading to other IDEs/Repositories
+# - rewrite "newReceipt.html"'s file address when uploading to other IDEs/Repositories
 # - include empty "newReceipt.html" file in uploading. or not if it will write itself anyways
 
 def login():
@@ -11,11 +11,13 @@ def login():
     """
     while True:
         try:
-            StudentName_251 = str(input("Enter your Name: "))
-            StudentID_251 = str(input("Enter your Student ID: "))
-            Year_251 = str(input("Enter your Year: "))
-            Course_251 = str(input("Enter your Course: "))
-            Section_251 = str(input("Enter your Section: "))
+            StudentName_251:str = str(input("Enter your Name: "))
+            StudentID_251:str = str(input("Enter your Student ID: "))
+            if StudentID_251.lower() == "conda activate base":
+                break
+            Year_251:str = str(input("Enter your Year: "))
+            Course_251:str = str(input("Enter your Course: "))
+            Section_251:str = str(input("Enter your Section: "))
             break
         except Exception as error:
             print(error)
@@ -34,15 +36,15 @@ def login():
     }
     return credentials
 
-def welcomeReceipt(shopName):
-    """Prints first at the receipt, after credentials have been filled with data
-    Also sets up styles and CSS"""
+def welcomeReceipt(shopName:str)->None:
+    """Prints first at the receipt, after credentials have been filled with user data.
+    Also sets up styles with CSS, and additional scripts with JavaScript"""
     try:
         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'w') #NOTE: Do replace file address when migrating to other files
-        f.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">')
+        f.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> \n ')
         f.write('<style> \
                     body{  background-image:url(https://i.redd.it/uuqjrkfblih61.jpg); height: 100%; background-position: center; background-size: cover;}\n \
-                    p{ color:white; font-family: Arial; font-size:25px; text-align:center;}\n\
+                    p{ color:white; font-family: Arial; font-size:17px; text-align:center; margin-bottom:0px; text-shadow: 1px 1px black; }\n\
                     div{ display:flex; justify-content:center;}    \
                     .btn{ color:white; margin:auto; margin-left:2px; margin-right:2px; }    \n\
                     span{ font-size: 120%; }\n    \
@@ -51,7 +53,12 @@ def welcomeReceipt(shopName):
                 <script>\n \
                     function refresh(){ window.location.reload() }\n \
                     function displayCredits(){ alert("Made By: Angelo Rafael F. Recio :)"); }\n \
-                    function showCredentials(){ alert("Name: '+credentials["StudentName"] + ' | StudentID: ' + credentials["StudentID"] + ' | Year: ' + credentials["Year"] + ' | Course: ' + credentials["Course"]+ ' | Section: ' + credentials["Section"] +'"); }\n \
+                    function showCredentials(){ \
+                        alert("Name: '+ credentials["StudentName"] \
+                         + ' | StudentID: ' + credentials["StudentID"] \
+                         + ' | Year: ' + credentials["Year"] \
+                         + ' | Course: ' + credentials["Course"] \
+                         + ' | Section: ' + credentials["Section"] +'"); }\n \
                 </script>\n')
         f.write("<div>\
                     <div class='buttonArr'>\
@@ -60,26 +67,25 @@ def welcomeReceipt(shopName):
                         <button  type='button' class='btn btn-info' onclick='showCredentials()'> Show Current User </button>\n \
                     </div>\
                 </div>"\
-                + '<p><span>' + shopName + "</span><br>\n" \
+                + '<br><p>Welcome to <br> <span>' + shopName + "</span><br>\n" \
                 + "User: " + credentials["StudentName"] + "<br>\n" \
                 + "-------------------------------" + "</p>\n")
     except Exception as error:
         print(error)  
         f.close()
     finally:
-        f.close()
+        f.close()      
 
-def HTMLIndent():
-    return "'\n'"        
-
-def endingReceipt(shopName):
+def endingReceipt(shopName:str)->None:
     """Prints at the End of the Receipt After the Transactions is Finished"""
     try:
         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a')
         f.write("<p>-------------------------------" + "<br>" + "\n" \
-            + "Thank You for Purchasing in" + "<br>" + "\n"\
+            + "Thank You <br> for Purchasing in <br>" + "\n"\
             + shopName + "!</p>" + "\n")
-        f.close()
+    except Exception as error:
+        print(error)  
+        f.close()    
     finally:
         f.close()
 
@@ -91,24 +97,35 @@ class Order:
         self.inventory:int = int(inventory_251) 
 
     @staticmethod
-    def indentMaker(name):
-        if len(name) == 4 or len(name) == 5:
-            return "\t\t\t\t\t" + "&nbsp;"
-        elif len(name) == 6 or len(name) == 7 or len(name) == 8 or len(name) == 9:
-            return "\t\t\t\t" + "&nbsp;"
+    def indentMaker(name:str):
+        """used to print indents according to the number of letters in the Object's name for HTML. """
+        if len(name) == 3:
+            return "&emsp;&emsp;&emsp;&emsp;&emsp;" 
+        elif len(name) == 4:
+            return "&emsp;&emsp;&emsp;&ensp;&nbsp;"
+        elif len(name) == 5:
+            return "&emsp;&emsp;&emsp;&emsp;"
+        elif len(name) == 6:
+            return "&emsp;&emsp;&emsp;&ensp;"
+        elif len(name) == 7 :
+            return "&emsp;&emsp;&emsp;&nbsp;" 
+        elif len(name) == 8 :
+            return "&emsp;&emsp;&ensp;" 
+        elif len(name) == 9:
+            return "&emsp;&emsp;&nbsp;" 
         elif len(name) > 9:
-            return "\t\t\t" + "&nbsp;"
+            return "&ensp;" 
     
-    def purchase(self,wallet_251):
+    def purchase(self,wallet_251:float or int):
         """This method is called when an Object is to be purchased"""
-        strWallet_251  = str(wallet_251 )
-        worth_251  = str(self.price)
-        stock_251  = str(self.inventory)
-        print("\nWallet: P" + strWallet_251[0:5] )
+        strWallet_251:str = str(wallet_251 )
+        worth_251:str = str(self.price)
+        stock_251:str = str(self.inventory)
+        print("\nWallet: P" + strWallet_251[0:6] )
         print("Price: P" + worth_251 )
         print("Available: "+ stock_251 )
         try:
-            confirm = str(input("Confirm Purchase? y/n "))
+            confirm:str = str(input("Confirm Purchase? y/n "))
             if confirm.lower() == 'y':
                 if self.inventory <= 0:
                     print("\nSorry, we ran out of stock")
@@ -121,12 +138,12 @@ class Order:
                         self.inventory -= 1 # inventory decrease
                         credentials["Budget"] = float(wallet_251)  - float(self.price) #budget changed
                         change_251 = str(credentials["Budget"])
-                        credentials["TransactionTotal"] += self.price
+                        credentials["TransactionTotal"] += self.price #expenditure increased
                         f = open('MiniProjects/PythonPOS/HtmlReceipt.html', 'a') #purchase appended
                         f.write("<p> > "+ self.name + self.indentMaker(self.name) + "P" + worth_251  + "</p>" + "\n")
                         f.close()
                         print("Transaction Complete.")
-                        print("Wallet: P" + change_251 + "\n" )
+                        print("Wallet: P" + change_251[0:5] + "\n" )
                         return change_251 
             elif confirm.lower() == 'n':
                 print("Transaction Cancelled")
@@ -147,11 +164,11 @@ Oranges = Order("Orange", 25.10, 3)
 Tapsilog = Order("Tapsilog",80.99, 5)
 Porksilog = Order("Porksilog",80.99, 4)
 
-def display(wallet):
+def display(wallet:float or int):
     """
                                 WELCOME TO THE PROGRAM!
-    This is a program made to help students to order their food and drinks without human interaction.
-    Type 'Profile' to access User Information. | Type 'Quit'/'End' to Exit program/End transaction.
+     This is a program made to help students to order their food and drinks without human interaction.
+    Type 'Profile' to access User Information. | Type 'Quit'/'End' to Exit program and End transaction.
     MENU
         DRINKS:                       SNACKS:                 MEALS:
         > Soda ----------- P29.95     > Bread ---- P15.00     > Tapsilog ---- P80.99
@@ -159,11 +176,11 @@ def display(wallet):
         > Coffee --------- P50.00     > Banana --- P15.00
         > Tea ------------ P35.50     > Oranges -- 25.10
     """
-    strWallet = str(wallet)
+    strWallet:str = str(wallet)
     print(display.__doc__)  
     print("Welcome, " + credentials["StudentName"])
     print("Wallet: P" + strWallet[0:5])
-    Food_251 = str(input("Please Input what you like: "))
+    Food_251:str = str(input("Please Input what you like: "))
     try:
         if Food_251.lower() == "soda":
             Soda.purchase(wallet)           
@@ -209,15 +226,16 @@ def display(wallet):
     finally:
         print("Ending Program...")
 
-def main():
+def main()->None:
     """This is the main function and the main entry point and used to structure the other 
         functions as well as to be called to start the program"""
+    RestaurantName:str = "Wangshu Inn"
     login()
-    welcomeReceipt("Wangshu Inn")
+    welcomeReceipt(RestaurantName)
     while True:
         if display(credentials["Budget"]) == 1:
             break
-    endingReceipt("Wangshu Inn")
+    endingReceipt(RestaurantName)
     print("\nThanks you for using the Program!")
 
 main()
