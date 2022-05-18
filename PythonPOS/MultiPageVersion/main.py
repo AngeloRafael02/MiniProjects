@@ -16,7 +16,7 @@ def main()->None:
         if display(misc["Budget"]) == 1:
             break
     endingReceipt(RestaurantName)
-    print("Thank you for using thew program!")
+    print("Thank you for using the program!")
 
 def welcomeReceipt(shopName:str)->None:
     """Prints first at the receipt, after credentials have been filled with user data.
@@ -26,8 +26,8 @@ def welcomeReceipt(shopName:str)->None:
         f.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> \n ')
         f.write('<style> \
                     body{  background-image:url(https://i.redd.it/uuqjrkfblih61.jpg); height: 100%; background-position: center; background-size: cover;}\n \
-                    p{ color:white; font-family: Arial; font-size:17px; text-align:center; margin-bottom:0px; text-shadow: 1px 1px black; }\n\
-                    div{ display:flex; justify-content:center;}    \
+                    p{background-image: url(https://wallpaperaccess.com/full/2796640.jpg); width: 200px; color:black; font-family:"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; font-size:18px;  text-align:center; margin-bottom:0px; text-shadow: 1.5px 1.5px black; margin-left: 43%; }\n \
+                    div{ display:flex; justify-content:center;} \n   \
                     .btn{ color:white; margin:auto; margin-left:2px; margin-right:2px; }    \n\
                     span{ font-size: 120%; }\n    \
                 </style><br>\n')
@@ -49,9 +49,11 @@ def welcomeReceipt(shopName:str)->None:
                         <button  type='button' class='btn btn-info' onclick='showCredentials()'> Show Current User </button>\n \
                     </div>\
                 </div>"\
-                + '<br><p>Welcome to <br> <span>' + shopName + "</span><br>\n" \
+                + '\n<br><p>Welcome to <br> <span>' + shopName + "</span><br>\n" \
                 + "User: " + studentdata.USER.name + "<br>\n" \
-                + "-------------------------------" + "</p>\n")
+                + "ID: " + studentdata.USER.id + "<br>\n" \
+                + "-------------------------------<br>\n" \
+                + "#&emsp;Name&emsp;&emsp;&emsp;&ensp;Price</p>\n")
     except Exception as error:
         print(error)  
         f.close()

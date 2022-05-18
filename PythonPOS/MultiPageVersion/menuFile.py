@@ -40,22 +40,26 @@ class Order:
         print("Price: P" + worth_251 )
         print("Available: "+ stock_251 )
         try:
+            quantity:int = int(input("How many do you want? "))
             confirm:str = str(input("Confirm Purchase? y/n "))
             if confirm.lower() == 'y':
-                if self.inventory <= 0:
+                if quantity > self.inventory:
+                    print("\nSorry, Current stock is not enough")
+                    print("Transaction cancelled\n")
+                if self.inventory <= 0 or quantity > self.inventory:
                     print("\nSorry, we ran out of stock")
                     print("Transaction Cancelled\n")
                 elif self.inventory > 0:
-                    if (wallet_251 - self.price) < 0:
+                    if (wallet_251 - self.price*quantity) < 0:
                         print("\nSorry, Wallet Amount not enough")
                         print("Transaction Cancelled\n")
                     else:
-                        self.inventory -= 1 # inventory decrease
-                        misc["Budget"] = float(wallet_251)  - float(self.price) #budget changed
+                        self.inventory -= quantity # inventory decrease
+                        misc["Budget"] = float(wallet_251)  - float(self.price)*quantity #budget changed
                         change_251 = str(misc["Budget"])
-                        misc["TransactionTotal"] += self.price #expenditure increased
+                        misc["TransactionTotal"] += self.price*quantity #expenditure increased
                         f = open('MiniProjects/PythonPOS/MultiPageVersion/receipt.html', 'a') #purchase appended
-                        f.write("<p> > "+ self.name + self.indentMaker(self.name) + "P" + worth_251  + "</p>" + "\n")
+                        f.write("<p> "+ str(quantity) + " - " + self.name + self.indentMaker(self.name) + "P" + str(self.price*quantity)  + "</p>" + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251[0:5] + "\n" )
