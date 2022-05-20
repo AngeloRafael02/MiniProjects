@@ -26,7 +26,7 @@ def welcomeReceipt(shopName:str)->None:
         f.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> \n ')
         f.write('<style> \
                     body{  background-image:url(https://i.redd.it/uuqjrkfblih61.jpg); height: 100%; background-position: center; background-size: cover;}\n \
-                    p{background-image: url(https://wallpaperaccess.com/full/2796640.jpg); width: 200px; color:black; font-family:"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; font-size:18px;  text-align:center; margin-bottom:0px; text-shadow: 1.5px 1.5px black; margin-left: 43%; }\n \
+                    p{background-image: url(https://wallpaperaccess.com/full/2796640.jpg); width: 200px; color:black; font-family:"Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif; font-size:18px;  text-align:center; margin-bottom:0px; margin-left: 43%; }\n \
                     div{ display:flex; justify-content:center;} \n   \
                     .btn{ color:white; margin:auto; margin-left:2px; margin-right:2px; }    \n\
                     span{ font-size: 120%; }\n    \
@@ -109,7 +109,7 @@ def display(wallet:float or int):
                 f.write("<p>-------------------------------" + "</p>" + "\n"\
                     + "<p>Total: \t\t\t\t\tP" + str(misc["TransactionTotal"]) +  "</p>\n"\
                     + "<p>Payment: \t\t\t\tP" + str(misc["defaultInitialMoney"]) +  "</p>\n"\
-                    + "<p>Change: \t\t\t\tP" + str(misc["Budget"])[0:6] +  "</p>\n")
+                    + "<p>Change: \t\t\t\tP" + str(round(misc["Budget"]),2)+  "</p>\n")
                 f.close()
             except Exception as error:
                 print(error)  
