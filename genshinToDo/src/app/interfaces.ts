@@ -7,7 +7,8 @@ export interface characterInterface {
     region:String,  
     domain:String,
     material:String,
-    availability:String[]
+    availability:String[],
+    imgURL?:String
 }
 
 export interface weaponInterface{
@@ -18,7 +19,8 @@ export interface weaponInterface{
     weaponType:String,
     domain:String,
     material:String,
-    availability:String[]
+    availability:String[],
+    imgURL?:String
 }
 
 export interface toDoListInterface{

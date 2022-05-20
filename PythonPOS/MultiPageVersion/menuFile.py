@@ -1,7 +1,7 @@
 misc={
     "defaultInitialMoney": int(150),
-    "TransactionTotal": float(0),
-    "Budget" : float(150.00)
+    "TransactionTotal": float(round(0,2)),
+    "Budget" : float(round(150.00,2))
 }
 
 class Order:
