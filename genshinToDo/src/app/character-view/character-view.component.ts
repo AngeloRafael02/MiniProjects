@@ -5,22 +5,25 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-character-view',
-  template: ` <p>CHARACTERS</p>
-              <ul class="chars" *ngFor="let Character of Characters">
-              <span class="item">
-                <li (click)="onSelect(Character)" [class.selected]="wasSelected(Character)">{{Character.name}}</li>
-              </span>
-                </ul>`,
+  template: ` 
+  <p>CHARACTERS</p>
+    <ul class="chars justify-content-center" *ngFor="let Character of Characters">
+      <abbr title="{{Character.name}}">
+      <img src="{{Character.imgURL}}" alt="{{Character.name}}" (click)="onSelect(Character)" [class.selected]="wasSelected(Character)">
+      </abbr>
+    </ul>
+  `,
   styles: [`
-  li.selected{
-    color:red;
-  }`]
+  img { width:7.5%; }
+  img:hover { border-style: solid; border-color:grey; }
+  img.selected{ border-style: solid; border-color:black; }
+  `]
 })
 export class CharacterViewComponent implements OnInit {
 
   public Characters:characterInterface[] = [];
   public selectedId:number = 0;
-
+  
   constructor(
     private _mainService:MainService,
     private route:ActivatedRoute,
