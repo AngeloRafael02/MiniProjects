@@ -72,3 +72,5 @@ INSERT INTO DomainMaterials (Material, MaterialType, Domain_ID, Availabilities) 
     ('Narukami','Weapon Ascension',6,2),
     ('Light','Character Ascension',5,3),
     ('Mask','Weapon Ascension',6,3);
+
+--NOTE: columns to be added -> Values must also be updated

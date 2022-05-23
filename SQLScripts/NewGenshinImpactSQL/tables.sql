@@ -60,4 +60,4 @@ CREATE TABLE Weapons (
     ImgURL TEXT
 );
 
---ALTERATIONS for references and foreign Keys
+--ALTERATIONS for rFUTURE COLUMN ADDING AND REFERENCES
