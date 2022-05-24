@@ -1,3 +1,4 @@
+
 misc={
     "defaultInitialMoney": int(150),
     "TransactionTotal": float(round(0,2)),
@@ -12,24 +13,12 @@ class Order:
         self.inventory:int = int(inventory_251) 
 
     @staticmethod
-    def indentMaker(name:str):
+    def HTMLIndentMaker(name:str)->str:
         """used to print indents according to the number of letters in the Object's name for HTML. """
-        if len(name) == 3:
-            return "&emsp;&emsp;&emsp;&emsp;&emsp;" 
-        elif len(name) == 4:
-            return "&emsp;&emsp;&emsp;&ensp;&nbsp;"
-        elif len(name) == 5:
-            return "&emsp;&emsp;&emsp;&emsp;"
-        elif len(name) == 6:
-            return "&emsp;&emsp;&emsp;&ensp;"
-        elif len(name) == 7 :
-            return "&emsp;&emsp;&emsp;&nbsp;" 
-        elif len(name) == 8 :
-            return "&emsp;&emsp;&ensp;" 
-        elif len(name) == 9:
-            return "&emsp;&emsp;&nbsp;" 
-        elif len(name) > 9:
-            return "&ensp;" 
+        if len(name) > 9: #exclusively for Bottled Water
+            return "&ensp;"
+        else:
+            return "&nbsp;"*(19-len(name))
     
     def purchase(self,wallet_251):
         """This method is called when an Object is to be purchased"""
@@ -59,7 +48,7 @@ class Order:
                         change_251 = str(misc["Budget"])
                         misc["TransactionTotal"] += self.price*quantity #expenditure increased
                         f = open('MiniProjects/PythonPOS/MultiPageVersion/receipt.html', 'a') #purchase appended
-                        f.write("<p> "+ str(quantity) + " - " + self.name + self.indentMaker(self.name) + "P" + str(self.price*quantity)  + "</p>" + "\n")
+                        f.write("<p> "+ str(quantity) + " - " + self.name + self.HTMLIndentMaker(self.name) + "P" + str(self.price*quantity)  + "</p>" + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251[0:5] + "\n" )
