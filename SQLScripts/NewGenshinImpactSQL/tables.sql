@@ -60,4 +60,8 @@ CREATE TABLE Weapons (
     ImgURL TEXT
 );
 
---ALTERATIONS for rFUTURE COLUMN ADDING AND REFERENCES
+--ALTERATIONS for COLUMN and REFERENCES Adding
+
+ALTER TABLE Regions
+    ADD COLUMN Character_Domain_ID BIGINT REFERENCES Domains(id), --reference only Character Domains, Make column NULLABLE
+    ADD COLUMN Weapon_Domain_ID BIGINT REFERENCES Domains(id); --reference only weapon domains, Make column NULLABLE
