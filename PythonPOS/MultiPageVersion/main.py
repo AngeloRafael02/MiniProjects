@@ -107,14 +107,13 @@ def display(wallet:float or int):
             try:
                 f = open('MiniProjects/PythonPOS/MultiPageVersion/receipt.html', 'a')
                 f.write("<p>-------------------------------" + "</p>" + "\n"\
-                    + "<p>Total: \t\t\t\t\tP" + str(misc["TransactionTotal"]) +  "</p>\n"\
-                    + "<p>Payment: \t\t\t\tP" + str(misc["defaultInitialMoney"]) +  "</p>\n"\
-                    + "<p>Change: \t\t\t\tP" + str(round(misc["Budget"]),2)+  "</p>\n")
-                f.close()
+                    + "<p>Total:&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;P" + str(misc["TransactionTotal"]) +  "</p>\n"\
+                    + "<p>Payment:&emsp;&emsp;&emsp;&emsp;P" + str(misc["defaultInitialMoney"]) +  "</p>\n"\
+                    + "<p>Change:&emsp;&emsp;&emsp;&emsp;&nbsp;P" + str(round(misc["Budget"],2))+  "</p>\n")
             except Exception as error:
                 print(error)  
                 f.close()
-            finally:
+            finally:    
                 f.close()
             return 1
     except Exception as error:
