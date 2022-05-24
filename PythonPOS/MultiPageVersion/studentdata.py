@@ -1,7 +1,7 @@
 class Student():
-    def __init__(self,name:str,id:str,year:str,course:str,section:str):
+    def __init__(self,name:str,id:int,year:str,course:str,section:str):
         self.name = name
-        self.id = id
+        self.id = str(id)
         self.year = year
         self.course = course
         self.section = section
@@ -9,11 +9,18 @@ class Student():
 while True:
     try:
         name251:str = str(input("Input Name Here: "))
-        id251:str = str(input("Input Id Here: "))
+        id251:int = int(input("Input Id Here: "))
         year251:str = str(input("Input Year Here: "))
         course251:str = str(input("Input Course Here: "))
         section251:str = str(input("Input Section Here: ")) 
-        break
+        print("Name: " + name251 + "\n" \
+            + "ID: " + id251 + "\n" \
+            + "Year: " + year251 + "\n" \
+            + "Course: " + course251 + "\n" \
+            + "Section: " + section251)
+        confirmation:str = str(input('Confirm Input? y/n: '))
+        if confirmation.lower() == 'y':
+            break
     except Exception as error:
         print(error)
 
