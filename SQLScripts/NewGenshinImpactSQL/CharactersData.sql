@@ -1,9 +1,57 @@
--- El:Element , WT:WeaponType , R:Region , D:Domain , DM:DomainMaterial , A:Availability , U:IngURL
+-- St:Star , El:Element , WT:WeaponType , R:Region , D:Domain , DM:DomainMaterial , A:Availability , U:IngURL
 
 INSERT INTO 
 Characters (Name, Star, Element_ID, WeaponType_ID, Region_ID, Domain_ID, DomainMaterial_ID, Availability, ImgURL)
 VALUES
---Name   id El WT  R  D DM  A  U
-('Amber', 4, 1, 5, 1, 1, 1, 1, '../../assets/data/images/characters/amber.png'),
-('Kaeya', 4, 6, 1, 1, 1, 5, 3, '../../assets/data/images/characters/kaeya.png'),
-('Lisa',  4, 4, 4, 1, 1, 5, 3, '../../assets/data/images/characters/lisa.png')
+--Name                  St El WT  R  D DM  A  U
+('Amber',               4, 1, 5, 1, 1, 1, 1, '../../assets/data/images/characters/amber.png'),
+('Kaeya',               4, 6, 1, 1, 1, 5, 3, '../../assets/data/images/characters/kaeya.png'),
+('Lisa',                4, 4, 4, 1, 1, 5, 3, '../../assets/data/images/characters/lisa.png'),
+('Barabara',            4, 2, 4, 1),
+('Razor',               4, 4, 2, 1),
+('Xiangling',           4, 1, 3, 2),
+('Beidou',              4, 4, 2, 2),
+('Xingqiu',             4, 2, 1, 2),
+('Nigguang',            4, 7, 4, 2),
+('Fischl',              4, 4, 5, 1),
+('Bennett',             4, 1, 1, 1),
+('Noelle',              4, 7, 3, 1),
+('Chongyun',            4, 6, 2, 2),
+('Sucrose',             4, 3, 4, 1),
+('Jean',                5, 3, 1, 1),
+('Diluc',               5, 1, 2, 1),
+('Qiqi',                5, 6, 1, 2),
+('Mona',                5, 2, 4, 1),
+('Keqing',              5, 4, 1, 2),
+('Venti',               5, 3, 5, 1),
+('Klee',                5, 1, 4, 1),
+('Diona',               4, 6, 5, 1),
+('Tartaglia',           5, 2, 5, 2),
+('Xinyan',              4, 1, 3, 2),
+('Zhongli',             5, 7, 3, 2),
+('Albedo',              5, 7, 1, 1),
+('Ganyu',               5, 6, 5, 2),
+('Xiao',                5, 3, 3, 2),
+('Hu Tao',              5, 1, 3, 2),
+('Rosaria',             4, 6, 3, 1),
+('Yanfei',              4, 1, 4, 2),
+('Eula',                5, 6, 2, 1),
+('Kaedehara Kazuha',    5, 3, 1, 3),
+('Kamisato Ayaka',      5, 6, 1, 3),
+('Sayu',                4, 3, 2, 3),
+('Yoimiya',             5, 1, 5, 3),
+('Aloy',                5, 6, 5, 1),
+('Kujou Sara',          4, 4, 5, 3),
+('Raiden Shogun',       5, 4, 3, 3),
+('Sangonimoya Kokomi',  5, 2, 4, 3),
+('Thoma',               4, 1, 3, 3),
+('Gorou',               4, 7, 5, 3),
+('Arataki Itto',        5, 7, 2, 3),
+('Yun Jin',             4, 7, 3, 2),
+('Shenhe',              5, 6, 3, 2),
+('Yae Miko',            5, 4, 4, 3),
+('Kamisato Ayato',      5, 2, 1, 3),
+('Kuki Shinobu',        4, 4, 1, 3),
+('Yelan',               5, 2, 5, 2),
+('Shikanoin Heizou',    4, 3, 4, 3)
+

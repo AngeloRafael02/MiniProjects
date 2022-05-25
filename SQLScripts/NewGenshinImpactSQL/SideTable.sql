@@ -74,7 +74,6 @@ INSERT INTO DomainMaterials (Material, MaterialType, Domain_ID, Availabilities) 
     ('Mask','Weapon Ascension',6,3);
 
 --NOTE: columns to be added -> Values must also be updated
-
 UPDATE Regions SET Character_Domain_ID = 1, Weapon_Domain_ID = 2 WHERE  region = 'Mondstadt';
 UPDATE Regions SET Character_Domain_ID = 3, Weapon_Domain_ID = 4 WHERE  region = 'Liyue';
 UPDATE Regions SET Character_Domain_ID = 5, Weapon_Domain_ID = 6 WHERE  region = 'Inazuma';
