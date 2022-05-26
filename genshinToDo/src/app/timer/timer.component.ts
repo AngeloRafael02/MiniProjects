@@ -18,9 +18,13 @@ export class TimerComponent implements OnInit {
   constructor() { 
     this.TimerReset(this.now)
   }
+  
   ngOnInit(): void {
     setInterval(()=>{
       this.mainTimer();
+      if (this.mainTimer() == "00:00:00:00"){
+        clearInterval();
+      }
     },1000);
   }
 
@@ -56,6 +60,11 @@ export class TimerComponent implements OnInit {
       this.clsSecond = numSecond < 10 ? '0' + this.clsSecond : this.clsSecond;
       this.clsSecond = numSecond == 60 ? '00' : this.clsSecond;
 
-    return this.clsDay + ":" + this.clsHour + ":" + this.clsMinute + ":" + this.clsSecond;
+    if (numDay == 0 && numHour == 0 && numMinute == 0 && numSecond == 0){
+      return "00:00:00:00";
+    }
+    else {
+      return this.clsDay + ":" + this.clsHour + ":" + this.clsMinute + ":" + this.clsSecond;
+    }
   }
 }
