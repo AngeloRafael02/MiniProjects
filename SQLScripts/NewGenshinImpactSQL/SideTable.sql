@@ -54,24 +54,24 @@ INSERT INTO Domains (DomainName, Region_ID) VALUES
 
 --DOMAINMATERIAL ROWS
 INSERT INTO DomainMaterials (Material, MaterialType, Domain_ID, Availabilities) VALUES 
-    ('Freedom','Character Ascension',1,1), 
-    ('Decarabian','Weapon Ascension',2,1),
-    ('Resistance', 'Character Ascension',1,2), 
-    ('Boreal Wolf','Weapon Ascension',2,2),
-    ('Balled', 'Character Ascension',1,3), 
-    ('Dandelion Gladiator','Weapon Ascension',2,3),
-    ('Prosperity', 'Character Ascension',3,1),
-    ('Guyun','Weapon Ascension',4,1),
-    ('Diligence','Character Ascension',3,2),
-    ('Mist Veiled','Weapon Ascension',4,2),
-    ('Gold','Character Ascension',3,3),
-    ('Aerosiderite','Weapon Ascension',4,3),
-    ('Tansience','Character Ascencion',5,1),
-    ('Distant Sea','Weapon Ascension',3,1),
-    ('Elegance','Character Ascension',6,2),
-    ('Narukami','Weapon Ascension',6,2),
-    ('Light','Character Ascension',5,3),
-    ('Mask','Weapon Ascension',6,3);
+    ('Freedom','Character Ascension',1,1),          --1          
+    ('Decarabian','Weapon Ascension',2,1),          --2
+    ('Resistance', 'Character Ascension',1,2),      --3 
+    ('Boreal Wolf','Weapon Ascension',2,2),         --4
+    ('Balled', 'Character Ascension',1,3),          --5
+    ('Dandelion Gladiator','Weapon Ascension',2,3), --6
+    ('Prosperity', 'Character Ascension',3,1),      --7
+    ('Guyun','Weapon Ascension',4,1),               --8
+    ('Diligence','Character Ascension',3,2),        --9
+    ('Mist Veiled','Weapon Ascension',4,2),         --10
+    ('Gold','Character Ascension',3,3),             --11
+    ('Aerosiderite','Weapon Ascension',4,3),        --12
+    ('Tansience','Character Ascencion',5,1),        --13
+    ('Distant Sea','Weapon Ascension',3,1),         --14
+    ('Elegance','Character Ascension',6,2),         --15
+    ('Narukami','Weapon Ascension',6,2),            --16
+    ('Light','Character Ascension',5,3),            --17
+    ('Mask','Weapon Ascension',6,3);                --18
 
 --NOTE: columns to be added -> Values must also be updated
 UPDATE Regions SET Character_Domain_ID = 1, Weapon_Domain_ID = 2 WHERE  region = 'Mondstadt';
