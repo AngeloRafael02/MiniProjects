@@ -1,14 +1,14 @@
 export interface characterInterface {
     id:Number,
-    star:Number,
     name:String,
-    weaponType:String,
+    star:Number,
+    type:String,
     element:String,
     region:String,  
-    domain:String,
+    domainname:String,
     material:String,
-    availability:String[],
-    imgURL?:String
+    days?:string[],
+    imgurl:String
 }
 
 export interface weaponInterface{
