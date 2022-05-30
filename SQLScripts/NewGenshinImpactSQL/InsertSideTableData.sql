@@ -28,14 +28,14 @@ INSERT INTO Elements (Element) VALUES
 
 --SECONDSTAT (for Weapons Table)
 INSERT INTO SecondStats (Stat) VALUES 
-    ('ATK'),
-    ('HP'),
-    ('DEF'),
-    ('Physical DMG Bonus'),
-    ('Energy Recharge'),
-    ('Elemental Mastery'),
-    ('CRIT DMG'),
-    ('CRIT Rate');
+    ('ATK'),                --1
+    ('HP'),                 --2
+    ('DEF'),                --3
+    ('Physical DMG Bonus'), --4
+    ('Energy Recharge'),    --5
+    ('Elemental Mastery'),  --6
+    ('CRIT DMG'),           --7
+    ('CRIT Rate');          --8
 
 --AVAILABILITY ROWS
 INSERT INTO Availability (Days) VALUES
