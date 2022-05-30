@@ -1,7 +1,7 @@
 --CHARACTERS VIEWS
 --All Days Characters
 CREATE VIEW AllCharacters AS 
-SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
+SELECT characters.id, name, star, Elements.Element, WeaponTypes.Type, Regions.Region, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
     FROM Characters
     JOIN Elements ON Characters.Element_id = Elements.id
     JOIN WeaponTypes ON Characters.WeaponType_id = WeaponTypes.id
@@ -13,7 +13,7 @@ SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, Domai
     ORDER BY characters.id ASC;
 --Monday, Thursday, Sunday Characters
 CREATE VIEW Day1Characters AS 
-SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
+SELECT characters.id, name, star, Elements.Element, WeaponTypes.Type, Regions.Region, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
     FROM Characters
     JOIN Elements ON Characters.Element_id = Elements.id
     JOIN WeaponTypes ON Characters.WeaponType_id = WeaponTypes.id
@@ -25,7 +25,7 @@ SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, Domai
     ORDER BY characters.id ASC;
 --Tuesday, Friday, Sunday Characters
 CREATE VIEW Day2Characters AS 
-SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, DomainMaterials.Material, Availability.Days , ImgURL
+SELECT characters.id, name, star, Elements.Element, WeaponTypes.Type, Regions.Region, Domains.DomainName, DomainMaterials.Material, Availability.Days , ImgURL
     FROM Characters
     JOIN Elements ON Characters.Element_id = Elements.id
     JOIN WeaponTypes ON Characters.WeaponType_id = WeaponTypes.id
@@ -37,7 +37,7 @@ SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, Domai
     ORDER BY characters.id ASC;
 --Wednesday, Saturday, Sunday Characters
 CREATE VIEW Day3Characters AS 
-SELECT name, star, Elements.Element, WeaponTypes.Type, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
+SELECT characters.id, name, star, Elements.Element, WeaponTypes.Type, Regions.Region, Domains.DomainName, DomainMaterials.Material, Availability.Days, ImgURL
     FROM Characters
     JOIN Elements ON Characters.Element_id = Elements.id
     JOIN WeaponTypes ON Characters.WeaponType_id = WeaponTypes.id
