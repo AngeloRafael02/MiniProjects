@@ -1,4 +1,4 @@
---WEAPONTYPE ROWS
++--WEAPON_TYPE ROWS
 INSERT INTO WeaponTypes (Type) VALUES 
     ('Sword'),
     ('Claymore'),
@@ -8,25 +8,25 @@ INSERT INTO WeaponTypes (Type) VALUES
 
 --REGION ROWS
 INSERT INTO Regions (Region) VALUES 
-    ('Mondstadt'), 
-    ('Liyue'),
-    ('Inazuma'),
-    ('Sumeru'),
-    ('Fontaine'),
-    ('Natlan'),
-    ('Snezhnaya');
+    ('Mondstadt'),  --1
+    ('Liyue'),      --2
+    ('Inazuma'),    --3
+    ('Sumeru'),     --4
+    ('Fontaine'),   --5
+    ('Natlan'),     --6
+    ('Snezhnaya');  --7
 
 --ELEMENT ROWS
 INSERT INTO Elements (Element) VALUES
-    ('Pyro'),
-    ('Hydro'), 
-    ('Anemo'),
-    ('Electro'), 
-    ('Dendro'), 
-    ('Cryo'),
-    ('Geo');
+    ('Pyro'),   --1
+    ('Hydro'),  --2
+    ('Anemo'),  --3
+    ('Electro'),--4 
+    ('Dendro'), --5
+    ('Cryo'),   --6
+    ('Geo');    --7
 
---SECONDSTAT (for Weapons Table)
+--SECOND_STAT (for Weapons Table)
 INSERT INTO SecondStats (Stat) VALUES 
     ('ATK'),                --1
     ('HP'),                 --2
@@ -43,35 +43,38 @@ INSERT INTO Availability (Days) VALUES
     (ARRAY['Sunday','Tuesday','Friday']),
     (ARRAY['Sunday','Wednesday','Saturday']);
 
---DOMAINNAME ROWS
-INSERT INTO Domains (DomainName, Region_ID) VALUES 
-    ('Forsaken Rift', 1 ),
-    ('Cecilia Garden', 1 ),
-    ('Taishan Mansion', 2 ),
-    ('Hidden Palace of Lianshan Formula', 2 ),
-    ('Violet Court', 3 ),
-    ('Court of Flowing Sand', 3);
+--DOMAIN_NAME ROWS
+INSERT INTO AscensionDomains (DomainName, Region_ID) VALUES 
+    ('Forsaken Rift', 1 ),                      --1 (CharacterDomain)
+    ('Cecilia Garden', 1 ),                     --2 (WeaponsDomain)
+    ('Taishan Mansion', 2 ),                    --3 (CharacterDomain)
+    ('Hidden Palace of Lianshan Formula', 2 ),  --4 (WeaponsDomain)
+    ('Violet Court', 3 ),                       --5 (CharactersDomain)
+    ('Court of Flowing Sand', 3);               --6 (WeaponsDomain)
 
---DOMAINMATERIAL ROWS
-INSERT INTO DomainMaterials (Material, MaterialType, Domain_ID, Availabilities) VALUES 
-    ('Freedom','Character Ascension',1,1),          --1          
-    ('Decarabian','Weapon Ascension',2,1),          --2
-    ('Resistance', 'Character Ascension',1,2),      --3 
-    ('Boreal Wolf','Weapon Ascension',2,2),         --4
-    ('Balled', 'Character Ascension',1,3),          --5
-    ('Dandelion Gladiator','Weapon Ascension',2,3), --6
-    ('Prosperity', 'Character Ascension',3,1),      --7
-    ('Guyun','Weapon Ascension',4,1),               --8
-    ('Diligence','Character Ascension',3,2),        --9
-    ('Mist Veiled','Weapon Ascension',4,2),         --10
-    ('Gold','Character Ascension',3,3),             --11
-    ('Aerosiderite','Weapon Ascension',4,3),        --12
-    ('Tansience','Character Ascencion',5,1),        --13
-    ('Distant Sea','Weapon Ascension',3,1),         --14
-    ('Elegance','Character Ascension',6,2),         --15
-    ('Narukami','Weapon Ascension',6,2),            --16
-    ('Light','Character Ascension',5,3),            --17
-    ('Mask','Weapon Ascension',6,3);                --18
+--CHARACTER_DOMAIN_MATERIAL ROWS
+INSERT INTO CharacterDomainMaterials (Material, Domain_ID, Availabilities) VALUES 
+    ('Freedom',1,1),          --1          
+    ('Resistance',1,2),      --2 
+    ('Balled',1,3),          --3
+    ('Prosperity',3,1),      --4
+    ('Diligence',3,2),        --5
+    ('Gold',3,3),             --6
+    ('Tansience',5,1),        --7
+    ('Elegance',6,2),         --8
+    ('Light',5,3);            --9
+
+--WEAPON_DOMAIN_MATERIALS ROWS
+INSERT INTO WeaponDomainMaterials () VALUES
+    ('Decarabian',2,1),          --1
+    ('Boreal Wolf',2,2),         --2
+    ('Dandelion Gladiator',2,3), --3
+    ('Guyun',4,1),               --4
+    ('Mist Veiled',4,2),         --5
+    ('Aerosiderite',4,3),        --6
+    ('Distant Sea',3,1),         --7
+    ('Narukami',6,2),            --8
+    ('Mask',6,3);                --9
 
 --NOTE: columns to be added -> Values must also be updated
 UPDATE Regions SET Character_Domain_ID = 1, Weapon_Domain_ID = 2 WHERE  region = 'Mondstadt';
