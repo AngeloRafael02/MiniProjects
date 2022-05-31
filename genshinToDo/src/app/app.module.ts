@@ -10,7 +10,7 @@ import { MainService } from './main.service';
 import { AppComponent } from './app.component';
 import { ClockComponent } from './clock/clock.component';
 import { TimerComponent } from './timer/timer.component';
-import { WeekDaysComponent } from './week-days/week-days.component';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +18,6 @@ import { WeekDaysComponent } from './week-days/week-days.component';
     ClockComponent,
     TimerComponent,
     routingComponents,
-    WeekDaysComponent,
   ],
   imports: [
     BrowserModule,
