@@ -1,4 +1,4 @@
-+--WEAPON_TYPE ROWS
+--WEAPON_TYPE ROWS
 INSERT INTO WeaponTypes (Type) VALUES 
     ('Sword'),
     ('Claymore'),
@@ -65,7 +65,7 @@ INSERT INTO CharacterDomainMaterials (Material, Domain_ID, Availabilities) VALUE
     ('Light',5,3);            --9
 
 --WEAPON_DOMAIN_MATERIALS ROWS
-INSERT INTO WeaponDomainMaterials () VALUES
+INSERT INTO WeaponDomainMaterials (Material, Domain_ID, Availabilities) VALUES
     ('Decarabian',2,1),          --1
     ('Boreal Wolf',2,2),         --2
     ('Dandelion Gladiator',2,3), --3
