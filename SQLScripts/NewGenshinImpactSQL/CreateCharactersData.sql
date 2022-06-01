@@ -1,8 +1,8 @@
--- St:Star , El:Element , WT:WeaponType , R:Region , D:Domain , DM:DomainMaterial , A:Availability , U:IngURL
-
+--Credits to (https://genshin.honeyhunterworld.com/) for the Data
 INSERT INTO 
 Characters (Name, Star, Element_ID, WeaponType_ID, Region_ID, Domain_ID, DomainMaterial_ID, Availabilties, ImgURL)
 VALUES
+-- St:Star , El:Element , WT:WeaponType , R:Region , D:Domain , DM:DomainMaterial , A:Availability , U:IngURL
 --Name                  St El WT  R  D DM  A  U
 ('Amber',               4, 1, 5, 1, 1, 1, 1, '../../assets/data/images/characters/amber.png'),
 ('Kaeya',               4, 6, 1, 1, 1, 3, 3, '../../assets/data/images/characters/kaeya.png'),
