@@ -56,11 +56,11 @@ INSERT INTO AscensionDomains (DomainName, Region_ID) VALUES
 INSERT INTO CharacterDomainMaterials (Material, Domain_ID, Availabilities) VALUES 
     ('Freedom',1,1),          --1          
     ('Resistance',1,2),      --2 
-    ('Balled',1,3),          --3
+    ('Ballad',1,3),          --3
     ('Prosperity',3,1),      --4
     ('Diligence',3,2),        --5
     ('Gold',3,3),             --6
-    ('Tansience',5,1),        --7
+    ('Transience',5,1),        --7
     ('Elegance',6,2),         --8
     ('Light',5,3);            --9
 
