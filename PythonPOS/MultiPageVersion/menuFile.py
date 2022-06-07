@@ -48,7 +48,7 @@ class Order:
                         change_251 = str(misc["Budget"])
                         misc["TransactionTotal"] += self.price*quantity #expenditure increased
                         f = open('MiniProjects/PythonPOS/MultiPageVersion/receipt.html', 'a') #purchase appended
-                        f.write("<p> "+ str(quantity) + " - " + self.name + self.HTMLIndentMaker(self.name) + "P" + str(self.price*quantity)  + "</p>" + "\n")
+                        f.write("<p> "+ str(quantity) + " - " + self.name + self.HTMLIndentMaker(self.name) + "P" + str(round(self.price*quantity), 2)  + "</p>" + "\n")
                         f.close()
                         print("Transaction Complete.")
                         print("Wallet: P" + change_251[0:5] + "\n" )
