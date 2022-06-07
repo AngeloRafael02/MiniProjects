@@ -14,7 +14,7 @@ while True:
         course251:str = str(input("Input Course Here: "))
         section251:str = str(input("Input Section Here: ")) 
         print("Name: " + name251 + "\n" \
-            + "ID: " + id251 + "\n" \
+            + "ID: " + str(id251) + "\n" \
             + "Year: " + year251 + "\n" \
             + "Course: " + course251 + "\n" \
             + "Section: " + section251)
