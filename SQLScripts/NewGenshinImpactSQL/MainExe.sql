@@ -1,10 +1,10 @@
-CREATE DATABASE test4_db;
+--NOTE This is the main exe file to make all the SQL tables and views
+--Absolute path of files only works on my local system. May changes it in the future 
+CREATE DATABASE typeormdb;
 \set ON_ERROR_STOP 1
-begin;
-    \c test4_db
-    \i C:/Users/user/Documents/MiniProjects/SQLScripts/NewGenshinImpactSQL/CreateAllTables.sql
-    \i C:/Users/user/Documents/MiniProjects/SQLScripts/NewGenshinImpactSQL/InsertSideTableData.sql
-    \i C:/Users/user/Documents/MiniProjects/SQLScripts/NewGenshinImpactSQL/CreateCharactersData.sql
-    \i C:/Users/user/Documents/MiniProjects/SQLScripts/NewGenshinImpactSQL/CreateWeaponsData.sql
-    \i C:/Users/user/Documents/MiniProjects/SQLScripts/NewGenshinImpactSQL/CreateViews.sql
-commit;\least
+    \c typeormdb
+    \i C:/Users/user/Documents/GenshinToDo/Misc/SQL_Scripts/CreateAllTables.sql
+    \i C:/Users/user/Documents/GenshinToDo/Misc/SQL_Scripts/InsertSideTableData.sql
+    \i C:/Users/user/Documents/GenshinToDo/Misc/SQL_Scripts/CreateCharactersData.sql
+    \i C:/Users/user/Documents/GenshinToDo/Misc/SQL_Scripts/CreateWeaponsData.sql
+    \i C:/Users/user/Documents/GenshinToDo/Misc/SQL_Scripts/CreateViews.sql
