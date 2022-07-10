@@ -1,9 +1,9 @@
 const express = require('express');
-const customers = require('./routes/customerRoutes');
+const customers = require('./routes/AllCharacterRoutes');
 
 const app = express()
 
-app.use('/customers', customers)
+app.use('/characters', customers)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
