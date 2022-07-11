@@ -1,9 +1,13 @@
 const express = require('express');
-const customers = require('./routes/AllCharacterRoutes');
+const allCharacterRoutes = require('./routes/AllCharacterRoutes');
+const day1CharacterRoutes = require('./routes/Day1CharacterRoutes')
+const day2CharactersRoutes = require('./routes/Day2CharacterRoutes')
 
 const app = express()
 
-app.use('/characters', customers)
+app.use('/allCharacters', allCharacterRoutes)
+app.use('/day1characters', day1CharacterRoutes)
+app.use('/day2characters', day2CharactersRoutes)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
