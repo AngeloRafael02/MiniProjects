@@ -12,7 +12,7 @@ Route.get("/all", async function (req,res) {
 });
 Route.get("/mondstadt", async function (req,res) {
     try{
-        client.characterCollection.find({availability:['Sunday','Tuesday','Friday'], material:"Resistance"})
+        client.characterCollection.find({material:"Resistance"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
@@ -21,7 +21,7 @@ Route.get("/mondstadt", async function (req,res) {
 });
 Route.get("/liyue", async function (req,res) {
     try{
-        client.characterCollection.find({availability:['Sunday','Tuesday','Friday'], material:"Diligence"})
+        client.characterCollection.find({material:"Diligence"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
@@ -30,7 +30,7 @@ Route.get("/liyue", async function (req,res) {
 });
 Route.get("/inazuma", async function (req,res) {
     try{
-        client.characterCollection.find({availability:['Sunday','Tuesday','Friday'], material:"Elegance"})
+        client.characterCollection.find({material:"Elegance"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);

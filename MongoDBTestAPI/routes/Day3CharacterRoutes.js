@@ -3,7 +3,7 @@ const Route = require('express').Router();
 
 Route.get("/all", async function (req,res) {
     try{
-        client.characterCollection.find({availability:["Sunday","Monday","Thursday"]})
+        client.characterCollection.find({availability:['Sunday','Wednesday','Saturday']})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
@@ -12,7 +12,7 @@ Route.get("/all", async function (req,res) {
 });
 Route.get("/mondstadt", async function (req,res) {
     try{
-        client.characterCollection.find({material:"Freedom"})
+        client.characterCollection.find({availability:['Sunday','Wednesday','Saturday'], material:"Ballad"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
@@ -21,7 +21,7 @@ Route.get("/mondstadt", async function (req,res) {
 });
 Route.get("/liyue", async function (req,res) {
     try{
-        client.characterCollection.find({material:"Prosperity"})
+        client.characterCollection.find({availability:['Sunday','Wednesday','Saturday'], material:"Gold"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
@@ -30,7 +30,7 @@ Route.get("/liyue", async function (req,res) {
 });
 Route.get("/inazuma", async function (req,res) {
     try{
-        client.characterCollection.find({material:"Transience"})
+        client.characterCollection.find({availability:['Sunday','Wednesday','Saturday'], material:"Light"})
             .sort({star:1, name:1}).toArray(function (err,result) {
             if (err) throw err;
             res.json(result);
