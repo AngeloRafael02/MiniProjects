@@ -1,5 +1,5 @@
-//USED for Adding Data/ Backup Data
-//load("Documents/MiniProjects/MongoDBTestAPI/insertMany.js");
+//USED for Adding Data/ Backup Data or reference
+//load("Documents/MiniProjects/MongoDBTestAPI/insertManyCharacters.js");
 
 db.Characters.insertMany([
     {name:"Amber",              star:4, element:"Pyro",     type:"Bow",         region:"Mondstadt", domain:"Forsaken Rift",     material:"Freedom",     availability:["Sunday","Monday","Thursday"],        imgurl:"../../assets/data/images/characters/amber.png" },
