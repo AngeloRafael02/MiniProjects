@@ -51,6 +51,8 @@ db.Characters.insertMany([
     {name:"Kamisato Ayato",     star:5, element:"Hydro",    type:"Sword",       region:"Inazuma",   domain:"Violet Court",      material:"Elegance",    availability:["Sunday","Tuesday","Friday"],     imgurl:"../../assets/data/images/characters/ayato.png"},
     {name:"Kuki Shinobu",       star:4, element:"Electro",  type:"Sword",       region:"Liyue",     domain:"Violet Court",      material:"Elegance",    availability:["Sunday","Tuesday","Friday"],     imgurl:"../../assets/data/images/characters/shinobu.png"},
     {name:"Yelan",              star:5, element:"Hydro",    type:"Bow",         region:"Liyue",     domain:"Taishan Mansion",   material:"Prosperity",  availability:["Sunday","Monday","Thursday"],     imgurl:"../../assets/data/images/characters/yelan.png"},
-    {name:"Shikanoin Heizou",   star:4, element:"Anemo",    type:"Catalyst",    region:"Inazuma",   domain:"Violet Court",      material:"Transience",  availability:["Sunday","Monday","Thursday"],     imgurl:"../../assets/data/images/characters/heizo.png"}
-
+    {name:"Shikanoin Heizou",   star:4, element:"Anemo",    type:"Catalyst",    region:"Inazuma",   domain:"Violet Court",      material:"Transience",  availability:["Sunday","Monday","Thursday"],     imgurl:"../../assets/data/images/characters/heizo.png"},
+    {name:"Collei",             star:4, element:"Dendro",   type:"Bow",         region:"Sumeru"},
+    {name:"Dori",               star:4, element:"Electro",  type:"Claymore",    region:"Sumeru"},
+    {name:"Tighnari",           star:5, element:"Dendro",   type:"Bow",         region:"Sumeru"},
 ]);
