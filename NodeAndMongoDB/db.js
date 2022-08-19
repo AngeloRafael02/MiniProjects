@@ -3,4 +3,4 @@ const uri = "mongodb+srv://RecioAngeloRafael:XPWy77tpEFjHWuy@cluster0.cbzs3.mong
 
 const client = new MongoClient(uri);
 
-module.exports = client;
+module.exports = {client};
