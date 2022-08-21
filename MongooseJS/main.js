@@ -1,9 +1,14 @@
 const express = require('express');
-
+const bodyParser = require('body-parser')
 const app = express()
 
-const mongoose = require('mongoose');    
-mongoose.connect('mongodb+srv://RecioAngeloRafael:XPWy77tpEFjHWuy@cluster0.cbzs3.mongodb.net/?retryWrites=true&w=majority',
-    ()=>{ console.log("Connected to Database by mongooseJS")},
-    e => console.error(e)
-)
+const testRoute = require('./routes/testRoutes')
+
+app.use(bodyParser.json())
+
+app.use("/test",testRoute)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, function(){
+    console.log(`listening at localhost:${PORT}`)
+})
