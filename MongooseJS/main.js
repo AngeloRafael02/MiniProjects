@@ -21,5 +21,5 @@ app.get('/all',async(req,res)=>{
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
-    console.log(`listening at localhost:${PORT}`)
+    console.log(`listening at localhost:${PORT}, please wait for DB connection`)
 })
