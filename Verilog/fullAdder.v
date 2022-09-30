@@ -15,6 +15,13 @@ module fullAdderTB;
     wire sum,c_out;
 
     fullAdder fladd(a,b,c_in,sum,c_out);
+    
+    initial
+        begin
+            $dumpfile("fullAdder.vcd");
+	        $dumpvars(-1, fladd);
+	        $monitor("%b", sum,c_out);
+        end
 
     initial 
         begin
