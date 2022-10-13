@@ -16,7 +16,7 @@ public class ArithmeticCalculator {
                 } else {
                     return num1 / num2;}
             default:
-                System.out.println("Error: Wrong Input");
+                System.out.println("Error: Incorrect operation input");
                 break;
         }
         return 0;
@@ -28,13 +28,11 @@ public class ArithmeticCalculator {
             float Input1 = input.nextFloat();
             System.out.print("Input Second Number: ");
             float Input2 = input.nextFloat();
-
             System.out.println("Input Operation: ");
             char operation = input.next().charAt(0);
+            input.close();
             float answer = calculate(Input1, Input2, operation);
             System.out.println("Answer: " + answer);
-    
-            input.close();
         } catch (Exception e) {
             System.out.print(e);
         } finally {
