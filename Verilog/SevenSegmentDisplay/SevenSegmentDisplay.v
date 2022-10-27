@@ -2,23 +2,20 @@ module SevenSegmentDisplay(
     input inputA,inputB,inputC,inputD,
     output a,b,c,d,e,f,g
 );
-    wire notA,notB,notC,notD,
-        BD,notBnotD,notCnotD,CD,
-        CnotD,BnotCD,notBC,BnotC,
-        BnotD;
+    wire notB,notC,notD,BD,notBnotD,notCnotD,CD,
+        CnotD,BnotCD,notBC,BnotC,BnotD;
 
     //NOTE: On all logicGateMethods -> first arguement=output, all-other arguments=inputs
     //      OR methods with multiple inputs can be separated into multiple 2-input OR gates
-    not(notA,inputA);
     not(notB,inputB);
     not(notC,inputC);
     not(notD,inputD);
 
     and(BD,inputB,inputD);
-    and(notBnotD,notB,notD);
+    and(notBnotD,notB,notD); //Can also be nand(notBnotD,B,D)
     or(a,inputA,inputC,BD,notBnotD); //pinA
 
-    and(notCnotD,notC,notD);
+    and(notCnotD,notC,notD); //Can also be nand(notCnotD,C,D)
     and(CD,inputC,inputD);
     or(b,notB,notCnotD,CD); //pinB
 
