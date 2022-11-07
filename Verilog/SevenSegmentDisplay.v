@@ -1,6 +1,6 @@
 module SevenSegmentDisplay(
     input inputA,inputB,inputC,inputD,
-    output a,b,c,d,e,f,g
+    output a,b,c,d,e,f,g //these are the pins on the seven segment display
 );
     wire notB,notC,notD,BD,notBnotD,notCnotD,CD,
         CnotD,BnotCD,notBC,BnotC,BnotD;
@@ -12,10 +12,10 @@ module SevenSegmentDisplay(
     not(notD,inputD);
 
     and(BD,inputB,inputD);
-    and(notBnotD,notB,notD); //Can also be nand(notBnotD,B,D)
+    and(notBnotD,notB,notD); 
     or(a,inputA,inputC,BD,notBnotD); //pinA
 
-    and(notCnotD,notC,notD); //Can also be nand(notCnotD,C,D)
+    and(notCnotD,notC,notD);
     and(CD,inputC,inputD);
     or(b,notB,notCnotD,CD); //pinB
 
@@ -42,6 +42,14 @@ module SSDTB;
     SevenSegmentDisplay SSD(w,x,y,z,a,b,c,d,e,f,g);
     
     integer number = 0;
+
+    initial
+        begin
+            $dumpfile("SevenSegmentDisplay.vcd");
+	        $dumpvars(-1, SSD);
+	        $monitor("%b", a,b,c,d,e,f,g);
+        end
+
     initial 
         begin
             w=0; x=0; y=0; z=0;
