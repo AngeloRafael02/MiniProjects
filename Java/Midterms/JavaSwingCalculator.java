@@ -4,7 +4,7 @@
  */
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class JavaSwingCalculator{
@@ -18,7 +18,25 @@ public class JavaSwingCalculator{
         JLabel label1 = new JLabel("Input First Number.");
                label1.setBounds(50, 50, 200, 30); 
         JTextField input1 = new JTextField();
-                  input1.setBounds(50, 75, 200, 20);   
+                  input1.setBounds(50, 75, 200, 20); 
+                  input1.addKeyListener(new KeyAdapter(){
+                    public void keyPressed(KeyEvent ke){
+                        String textValue = input1.getText();
+                        if ((ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' )|| ke.getKeyChar() == '.' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE){
+                            int index = textValue.indexOf(".");
+                            if(!(index == -1)){
+                                System.out.println(index);
+                            }
+                            System.out.println(index);
+                            input1.setEditable(true);
+                        } else{
+                            input1.setEditable(false);
+                        }
+
+                           
+                            
+                    }   
+                  });
         JLabel label2 = new JLabel("Input Second Number.");
                label2.setBounds(50,100, 200,30);
         JTextField input2 = new JTextField();
