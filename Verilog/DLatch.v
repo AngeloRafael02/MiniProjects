@@ -1,5 +1,5 @@
 module DLatch(
-    input D,enable,
+    input D,enable, //out enable into a clock to make the sircuit into a DFlipFlop
     output wire q1,q2
 );
     wire notD,and1,and2;
