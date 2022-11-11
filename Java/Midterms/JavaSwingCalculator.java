@@ -21,26 +21,18 @@ public class JavaSwingCalculator{
                   input1.setBounds(50, 75, 200, 20); 
                   input1.addKeyListener(new KeyAdapter(){
                     public void keyPressed(KeyEvent ke){
-                        String textValue = input1.getText();
-                        if ((ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' )|| ke.getKeyChar() == '.' || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE){
-                            int index = textValue.indexOf(".");
-                            if(!(index == -1)){
-                                System.out.println(index);
-                            }
-                            System.out.println(index);
-                            input1.setEditable(true);
-                        } else{
-                            input1.setEditable(false);
-                        }
-
-                           
-                            
+                        inputValidate(ke, input1);
                     }   
                   });
         JLabel label2 = new JLabel("Input Second Number.");
                label2.setBounds(50,100, 200,30);
         JTextField input2 = new JTextField();
                   input2.setBounds(50,125, 200, 20);
+                  input2.addKeyListener(new KeyAdapter(){
+                    public void keyPressed(KeyEvent ke){
+                        inputValidate(ke, input2);
+                    }
+                  });
         JLabel label3 = new JLabel("Input Operation.");
                label3.setBounds(50,150, 200,30); 
         String[] operations = {"Addition","Subtraction","Multiplication","Division"};
@@ -71,6 +63,17 @@ public class JavaSwingCalculator{
         mainF.setSize(500,300);  
         mainF.setLayout(null);  
         mainF.setVisible(true); 
+    }
+    public static void inputValidate(KeyEvent ke,JTextField InputComponent){
+        String field = InputComponent.getText();
+        if ((ke.getKeyChar() >= '0' && ke.getKeyChar() <= '9' )
+            ||(ke.getKeyChar() == '.' && field.chars().filter(ch -> ch == '.').count() <= 0)
+            || ke.getKeyCode() == KeyEvent.VK_BACK_SPACE
+            ){
+            InputComponent.setEditable(true);
+        } else{
+            InputComponent.setEditable(false);
+        }
     }
     public static float calculate(float num1, float num2, String operation) throws ArithmeticException {
         switch (operation) {
