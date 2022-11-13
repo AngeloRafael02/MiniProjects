@@ -13,6 +13,7 @@ public class JavaSwingCalculator{
                mainF = new JFrame("Calculator");
                mainF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                mainF.getContentPane().setBackground(Color.lightGray);
+               mainF.setResizable(false);
         JLabel title = new JLabel("Simple Arithmetic Calculator by: Angelo Rafael Recio");
                title.setBounds(50, 10, 500, 30);
         JLabel label1 = new JLabel("Input First Number.");
@@ -27,7 +28,7 @@ public class JavaSwingCalculator{
         JLabel label2 = new JLabel("Input Second Number.");
                label2.setBounds(50,100, 200,30);
         JTextField input2 = new JTextField();
-                  input2.setBounds(50,125, 200, 20);
+                  input2.setBounds(50,125, 200, 20); 
                   input2.addKeyListener(new KeyAdapter(){
                     public void keyPressed(KeyEvent ke){
                         inputValidate(ke, input2);
@@ -43,12 +44,13 @@ public class JavaSwingCalculator{
         JButton execute = new JButton("Calculate");
                 execute.setBounds(300, 50, 100, 30);
                 execute.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
+                    public void actionPerformed(ActionEvent e) throws NumberFormatException{
                         try {
-                            Float arg1 = Float.parseFloat(input1.getText());
-                            Float arg2 = Float.parseFloat(input2.getText());
-                            String op = (String) input3.getSelectedItem();
-                            results.setText(Float.toString(calculate(arg1,arg2,op)));                              
+                            results.setText(Float.toString(
+                                calculate(Float.parseFloat(input1.getText()),
+                                          Float.parseFloat(input2.getText()),
+                                          (String) input3.getSelectedItem())
+                            ));                              
                         } catch (Exception err) {           
                             System.out.println(err);
                             JOptionPane.showMessageDialog(mainF,"Wrong/Empty Input","Error",JOptionPane.ERROR_MESSAGE);
@@ -59,8 +61,8 @@ public class JavaSwingCalculator{
 
         mainF.add(title); mainF.add(label1); mainF.add(label2); mainF.add(input1); mainF.add(input2);
         mainF.add(label3); mainF.add(input3); mainF.add(execute); mainF.add(results);
-
-        mainF.setSize(500,300);  
+        
+        mainF.setSize(500,300);
         mainF.setLayout(null);  
         mainF.setVisible(true); 
     }
