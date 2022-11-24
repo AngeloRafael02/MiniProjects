@@ -16,7 +16,7 @@ module clockModule();
         begin
         clk = 0;
         forever 
-            #1 clk = ~clk;
+            #10 clk = ~clk;
         end
 endmodule
 

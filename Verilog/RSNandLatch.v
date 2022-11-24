@@ -12,11 +12,12 @@ module SRLTB;
 
     SRLatch SRL(s,r,q1,q2);
     initial begin
-        s=0;r=0;
-        $monitor("s=%b, r=%b, q1=%b, q2=%b",s,r,q1,q2);
-        #5 s=0;r=1;
-        #5 s=1;r=0;
-        #5 s=1;r=1;
-        #5 $finish;
+        #1 s=0;r=0;
+        #1 $display("HalfAdder");
+           $monitor($time,,,"s=%b, r=%b, q1=%b, q2=%b",s,r,q1,q2);
+        #1 s=0;r=1;
+        #1 s=1;r=0;
+        #1 s=1;r=1;
+        #1 $finish;
     end
 endmodule
