@@ -3,7 +3,7 @@
  * 2020251-BISCPE
  */
 import java.awt.event.ActionListener;
-import java.awt.Color;
+import java.awt.Color;  
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -12,6 +12,7 @@ public class JavaSwingCalculator{
     public static void app() throws NumberFormatException{
                mainF = new JFrame("Calculator");
                mainF.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+               mainF.setLocationRelativeTo(null);
                mainF.getContentPane().setBackground(Color.lightGray);
                mainF.setResizable(false);
         JLabel title = new JLabel("Simple Arithmetic Calculator by: Angelo Rafael Recio");
