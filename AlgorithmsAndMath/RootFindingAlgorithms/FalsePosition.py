@@ -1,35 +1,33 @@
 import math
-
-
-
 def f(x):
-    """Adjust your equation after the return keyword"""
+    """Change your Equations Here"""
     return (math.e**-x)-x
-def bisectionMethod(xl,xr,iteration=10,error=10):
-    xL = xl
-    xU = xr
+def FalsePositionMethod(XL,XU,iteration=10,error=10):
+    xL = XL
+    xU = XU
     i=0
     while i < iteration:
         fxL = f(xL)
         fxU = f(xU)
-        xR = (xL + xU)/2
+        xR  = xU-(fxU*(xL-xU))/(1-fxU)
         fxR = f(xR)
         Ea = abs((xU-xL)/(xU+xL))*100
-    #print(f(xL)*f(xR))
-        if f(xL)*f(xR) < 0:
-            xU=xR
+        if fxL*fxR <0:
+            xU = xR
             print("xL:"+str(xL)+" xU:"+str(xU)+" f(xL):"+str(fxL)+" f(xU):"+str(fxU)+" xR:"+str(xR)+" f(xR):"+str(fxR)+" Ea:"+str(Ea))
             i+=1
-        elif f(xL)*f(xR) > 0:
+        elif fxL*fxR  > 0:
             xL=xR
             print("xL:"+str(xL)+" xU:"+str(xU)+" f(xL):"+str(fxL)+" f(xU):"+str(fxU)+" xR:"+str(xR)+" f(xR):"+str(fxR)+" Ea:"+str(Ea))
             i+=1
-        elif f(xL)*f(xR) == 0 or error > Ea:
+        elif fxL*fxR  == 0 or error > Ea:
             print("xL:"+str(xL)+" xU:"+str(xU)+" f(xL):"+str(fxL)+" f(xU):"+str(fxU)+" xR:"+str(xR)+" f(xR):"+str(fxR)+" Ea:"+str(Ea))
             break
-bisectionMethod(0.5,1)
-        
 
 
 
 
+    
+
+
+FalsePositionMethod(0.5,1)
