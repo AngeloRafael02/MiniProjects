@@ -9,7 +9,7 @@ def FalsePositionMethod(XL,XU,iteration=10,error=10):
     while i < iteration:
         fxL = f(xL)
         fxU = f(xU)
-        xR  = xU-(fxU*(xL-xU))/(1-fxU)
+        xR  = xU-(fxU*(xL-xU))/(fxL-fxU)
         fxR = f(xR)
         Ea = abs((xU-xL)/(xU+xL))*100
         if fxL*fxR <0:
