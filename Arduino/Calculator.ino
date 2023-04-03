@@ -1,6 +1,6 @@
 /*DEV-NOTE:
 FIXED: Decimals only work once, find a way to repeat it another time for the second number 
-BUG:pressing '=' after input one number (no operation chose yet) does bugs
+FIXED*:pressing '=' after input one number (no operation chose yet) does bugs
 */
 
 #include <Keypad.h>
@@ -14,7 +14,7 @@ char keys [ROWS] [COLS] = {
   {'1', '2', '3', '+'},
   {'4', '5', '6', '-'},
   {'7', '8', '9', '*'},
-  {'.', '0', '=', '/'} };
+  {'.', '0', NULL, '/'} };
 byte rowPins[ROWS] = {9,8,7,6};
 byte colPins[COLS] = {5,4,3,2};
 
@@ -33,21 +33,21 @@ void loop() {
     lcd.clear();
     lcd.setCursor(0,0);
     lcd.print(display += key);
-    
     if (key == '='){ //main computing logic block
       String firstNumStr = display.substring(0, operationIndex(display)); //gets first number in string
       float firstNum = firstNumStr.toFloat();                             //parses it to float
       String secondNumStr = display.substring(operationIndex(display)+1); //gets second number in string
       float secondNum = secondNumStr.toFloat();                           //parses it to float
       lcd.setCursor(0,1);
-      Answer = calculate(display,firstNum,secondNum);  //Calculates Input
-      lcd.print(Answer);   //prints Answer
+      Answer = calculate(display,firstNum,secondNum); //Calculates Input
+      lcd.print(Answer);
+
 
       //resets operator keys default value      
       keys[0][3]='+';
       keys[1][3]='-';
       keys[2][3]='*';
-      keys[3][3]='/';    
+      keys[3][3]='/'; 
       //disables numbers temporarily until operator is picked
       for ( int row0 = 0; row0 < 4; ++row0 ){
         keys[ row0 ][ 0 ] = NULL;
@@ -114,5 +114,5 @@ void KeypadStateNormal(){
   keys[0][0]='1'; keys[0][1]='2'; keys[0][2]='3'; 
   keys[1][0]='4'; keys[1][1]='5'; keys[1][2]='6'; 
   keys[2][0]='7'; keys[2][1]='8'; keys[2][2]='9'; 
-  keys[3][0]='.'; keys[3][1]='0'; keys[3][2]='=';
+  keys[3][0]='.'
 }
