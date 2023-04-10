@@ -1,8 +1,3 @@
-/*DEV-NOTE:
-FIXED: Decimals only work once, find a way to repeat it another time for the second number 
-FIXED*:pressing '=' after input one number (no operation chose yet) does bugs
-*/
-
 #include <Keypad.h>
 #include <LiquidCrystal_I2C.h>
 
@@ -24,9 +19,13 @@ String display = "";
 float Answer;
 
 void setup(){
-  lcd.init();                      
+ lcd.init();
   lcd.backlight();
+  lcd.print("GROUP 1 PROJECT");
+  lcd.setCursor(3, 1);
+  delay(500);
 }
+
 void loop() {
   char key = myKeypad.getKey();
   if (key != NO_KEY){
@@ -34,7 +33,7 @@ void loop() {
     lcd.setCursor(0,0);
     lcd.print(display += key);
     if (key == '='){ //main computing logic block
-      String firstNumStr = display.substring(0, operationIndex(display)); //gets first number in string
+      String firstNumStr = display.substring(0,operationIndex(display)); //gets first number in string
       float firstNum = firstNumStr.toFloat();                             //parses it to float
       String secondNumStr = display.substring(operationIndex(display)+1); //gets second number in string
       float secondNum = secondNumStr.toFloat();                           //parses it to float
@@ -42,8 +41,7 @@ void loop() {
       Answer = calculate(display,firstNum,secondNum); //Calculates Input
       lcd.print(Answer);
 
-
-      //resets operator keys default value      
+      //resets operator keys default value, allowing for continuous calculation      
       keys[0][3]='+';
       keys[1][3]='-';
       keys[2][3]='*';
@@ -56,21 +54,23 @@ void loop() {
       }
     }
     if (key == keys[0][3] || key == keys[1][3] || key == keys[2][3] || key == keys[3][3]){
-      ///This code somehow prevents repetition of operations, state is normal again after pressing '='
-      keys[0][3]=NULL;
-      keys[1][3]=NULL;
-      keys[2][3]=NULL;
-      keys[3][3]=NULL; 
-      keys[3][0]='.';
-      keys[3][2]='=';
-      if (Answer != NULL){
-        KeypadStateNormal();
-        lcd.clear();
-        lcd.setCursor(0,0);
-        display = Answer;  
-        lcd.print(display + key);
-        display += key;
-        lcd.setCursor( display.length(),0);         
+      if(display.length() > 0){ // Check if there's at least one number in the display
+        //This code somehow prevents repetition of operations, state is normal again after pressing '='
+        keys[0][3]=NULL;
+        keys[1][3]=NULL;
+        keys[2][3]=NULL;
+        keys[3][3]=NULL; 
+        keys[3][0]='.';
+        keys[3][2]='=';
+        if (Answer != NULL){
+          KeypadStateNormal();
+          lcd.clear();
+          lcd.setCursor(0,0);
+          display = Answer;  
+          lcd.print(display + key);
+          display += key;
+          lcd.setCursor(display.length(),0);         
+        }
       }
     }
     if(key =='.'){
@@ -114,5 +114,5 @@ void KeypadStateNormal(){
   keys[0][0]='1'; keys[0][1]='2'; keys[0][2]='3'; 
   keys[1][0]='4'; keys[1][1]='5'; keys[1][2]='6'; 
   keys[2][0]='7'; keys[2][1]='8'; keys[2][2]='9'; 
-  keys[3][0]='.'
+  keys[3][0]='.'; keys[3][1]='0';
 }
