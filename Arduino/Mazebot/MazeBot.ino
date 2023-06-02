@@ -1,145 +1,180 @@
-#include <NewPing.h>        //Ultrasonic sensor function library. You must install this library
+//right
+int Echo1 = A0;
+int Trig1 = A1;
+//left sensor
+int Echo2 = A5;
+int Trig2 = A4;
+//middle sensor
+int Echo3 = A3;
+int Trig3 = A2;
 
-//our L298N control pins
 const int LeftMotorForward = 7;
 const int LeftMotorBackward = 6;
 const int RightMotorForward = 4;
 const int RightMotorBackward = 5;
 
-#define sensorNumber 3
-#define maximum_distance 200
-#define tooNear 20
+const int ENA = 9;  // Adjust the pin number as per your setup
+const int ENB = 10; // Adjust the pin number as per your setup
 
-boolean goesForward = false;
-int CenterScan = 100;
-int LeftScan = 100;
-int RightScan = 100;
+int ABS = 80;
+int Left_Distance = 0, Right_Distance = 0, Middle_Distance = 0;
 
-NewPing sonar[sensorNumber] = //Sensor object array. 
-{   
-  NewPing(A0, A1, maximum_distance), //Sensor sonar[0]Center     
-  NewPing(A2, A3, maximum_distance), //Sensor sonar[1] Left
-  NewPing(A4, A5, maximum_distance), //Sensor sonar[2] Right
-};
+void moveForward() {
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorForward, HIGH);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_MOVING_FORWARD");
+}
 
-void setup(){
+void moveBackward() {
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorBackward, HIGH);
+  digitalWrite(RightMotorBackward, HIGH);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_MOVING_BACKWARD");
+}
+
+void moveLeft() {
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorForward, HIGH);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_MOVING_LEFT");
+}
+
+void moveRight() {
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_MOVING_RIGHT");
+}
+
+void moveStop() {
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, 0);
+  analogWrite(ENB, 0);
+  Serial.print("ROBOT_STOP");
+}
+
+void moveCircleleft() {
+  digitalWrite(LeftMotorForward, HIGH);
+  digitalWrite(RightMotorForward, LOW);
+  digitalWrite(LeftMotorBackward, LOW);
+  digitalWrite(RightMotorBackward, HIGH);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_Circleleft");
+}
+
+void moveCircleright() {
+  digitalWrite(LeftMotorForward, LOW);
+  digitalWrite(RightMotorForward, HIGH);
+  digitalWrite(LeftMotorBackward, HIGH);
+  digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  Serial.print("ROBOT_Circleleft");
+}
+
+//Ultrasonic distance measurement:
+int Left_Distance_test() {
+  digitalWrite(Trig2, LOW);
+  delayMicroseconds(2);
+  digitalWrite(Trig2, HIGH);
+  delayMicroseconds(25);
+  digitalWrite(Trig2, LOW);
+  float Fdistance = pulseIn(Echo2, HIGH);
+  Fdistance = Fdistance / 29 / 2;
+  return (int)Fdistance;
+}
+
+int Middle_Distance_test() {
+  digitalWrite(Trig3, LOW);
+  delayMicroseconds(2);
+  digitalWrite(Trig3, HIGH);
+  delayMicroseconds(25);
+  digitalWrite(Trig3, LOW);
+  float Fdistance = pulseIn(Echo3, HIGH);
+  Fdistance = Fdistance / 29 / 2;
+  return (int)Fdistance;
+}
+
+int Right_Distance_test() {
+  digitalWrite(Trig1, LOW);
+  delayMicroseconds(2);
+  digitalWrite(Trig1, HIGH);
+  delayMicroseconds(25);
+  digitalWrite(Trig1, LOW);
+  float Fdistance = pulseIn(Echo1, HIGH);
+  Fdistance = Fdistance / 29 / 2;
+  return (int)Fdistance;
+}
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(Echo1, INPUT);
+  pinMode(Trig1, OUTPUT);
+  pinMode(Echo2, INPUT);
+  pinMode(Trig2, OUTPUT);
+  pinMode(Echo3, INPUT);
+  pinMode(Trig3, OUTPUT);
   pinMode(RightMotorForward, OUTPUT);
   pinMode(LeftMotorForward, OUTPUT);
   pinMode(LeftMotorBackward, OUTPUT);
   pinMode(RightMotorBackward, OUTPUT);
-  CenterScan = readPing(0);
-  delay(100);
-  CenterScan = readPing(0);
-  delay(100);
-  CenterScan = readPing(0);
-  delay(100);
-  CenterScan = readPing(0);
-  delay(100);
+  pinMode(ENA, OUTPUT);
+  pinMode(ENB, OUTPUT);
+  moveStop();
 }
 
-// MAIN LOGIC: Which ever side sensor detects more space/distance is followed
-void loop(){
-  CenterScan = readPing(0);
-  LeftScan = readPing(1);
-  RightScan = readPing(2);
-  delay(50);
 
-  //Adjusts Sides to prevent side collisions
-  if (LeftScan <= tooNear){ 
-    turnRight(100);
-  }
-  if (RightScan <= tooNear){
-    turnLeft(100);
-  }
 
-  if (CenterScan <= tooNear){ //Procs when CenterSensors is near an object
-    moveStop();
-    delay(300);
-    moveBackward();
-    delay(400);
-    moveStop();
-    delay(300);
+void loop() {
+  Left_Distance = Left_Distance_test();
+  delay(10);
+  Middle_Distance = Middle_Distance_test();
+  delay(10);
+  Right_Distance = Right_Distance_test();
+  delay(10);
 
-    if (LeftScan >= RightScan){ // Compares value of Left Sensor and Right Sensor to determine which way to go
-      turnLeft(700);
-      moveStop();
+  if (Middle_Distance <= 20) {
+    if (Right_Distance > Left_Distance) {
+      if ((Right_Distance <= 20) && (Left_Distance <= 20)) {
+        moveBackward();
+        delay(200);
+        moveCircleright();
+        delay(150);
+      } else {
+        moveRight();
+      }
+    } else if (Right_Distance < Left_Distance) {
+      if ((Right_Distance <= 20) && (Left_Distance <= 20)) {
+        moveBackward();
+        delay(200);
+        moveCircleleft();
+        delay(150);
+      } else {
+        moveLeft();
+      }
     }
-    else{
-      turnRight(700);
-      moveStop();
-    }
-
-    if (LeftScan <= tooNear && RightScan <= tooNear){ //Procs when all sides are in near an object
-      turnLeft(1500); //Hypothetically a near 180 degree turn 
-    }
-  }
-  else{
+  }else if (Right_Distance <=15) {
+    moveLeft();
+  }else if (Left_Distance <= 15) {
+    moveRight();
+  }else {
     moveForward();
   }
-}
-
-int readPing(int sensorIndex){
-  delay(70);
-  int cm = sonar[sensorIndex].ping_cm();
-  if (cm==0){
-    cm=250;
-  }
-  return cm;
-}
-
-void moveStop(){
-  digitalWrite(RightMotorForward, LOW);
-  digitalWrite(LeftMotorForward, LOW);
-  digitalWrite(RightMotorBackward, LOW);
-  digitalWrite(LeftMotorBackward, LOW);
-}
-
-void moveForward(){
-  if(!goesForward){
-    goesForward=true;
-
-    digitalWrite(LeftMotorForward, HIGH);
-    digitalWrite(RightMotorForward, HIGH);
-    digitalWrite(LeftMotorBackward, LOW);
-    digitalWrite(RightMotorBackward, LOW);
-  }
-}
-
-void moveBackward(){
-  goesForward=false;
-
-  digitalWrite(LeftMotorBackward, HIGH);
-  digitalWrite(RightMotorBackward, HIGH);
-  digitalWrite(LeftMotorForward, LOW);
-  digitalWrite(RightMotorForward, LOW);
-}
-
-void turnRight(int duration){
-   // "duration" parameter determines how much time does the motor turn (more time = more turns)
-  digitalWrite(LeftMotorForward, HIGH);
-  digitalWrite(RightMotorBackward, HIGH);
-  digitalWrite(LeftMotorBackward, LOW);
-  digitalWrite(RightMotorForward, LOW);
-  delay(duration);
-  //goes back to MoveForward Configuration
-  digitalWrite(LeftMotorForward, HIGH);
-  digitalWrite(RightMotorForward, HIGH);
-  digitalWrite(LeftMotorBackward, LOW);
-  digitalWrite(RightMotorBackward, LOW);
-}
-
-
-void turnLeft(int duration){
-  // "duration" parameter determines how much time does the motor turn (more time = more turns)
-  digitalWrite(LeftMotorBackward, HIGH);
-  digitalWrite(RightMotorForward, HIGH);
-  digitalWrite(LeftMotorForward, LOW);
-  digitalWrite(RightMotorBackward, LOW);
-  delay(duration);
-  //goes back to MoveForward Configuration
-  digitalWrite(LeftMotorForward, HIGH);
-  digitalWrite(RightMotorForward, HIGH);
-  digitalWrite(LeftMotorBackward, LOW);
-  digitalWrite(RightMotorBackward, LOW);
-
 }

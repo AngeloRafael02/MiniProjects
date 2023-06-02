@@ -52,11 +52,11 @@ void loop(){
   if (RightScan <= tooNear){
     turnLeft(100);
   }
+
   if (CenterScan <= tooNear){
     moveStop();
     delay(300);
-    moveBackward();
-    delay(400);
+    moveBackward(400);
     moveStop();
     delay(300);
 
@@ -91,6 +91,8 @@ void moveStop(){
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorBackward, LOW);
   digitalWrite(LeftMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
 }
 
 void moveForward(){
@@ -103,20 +105,24 @@ void moveForward(){
   }
 }
 
-void moveBackward(){
+void moveBackward(int duration){
   goesForward=false;
   digitalWrite(LeftMotorBackward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorForward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
+  delay(duration);
 }
 
 void turnRight(int duration){
-
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorBackward, HIGH);
   digitalWrite(LeftMotorBackward, LOW);
   digitalWrite(RightMotorForward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
   delay(duration);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorForward, HIGH);
@@ -129,6 +135,8 @@ void turnLeft(int duration){
   digitalWrite(RightMotorForward, HIGH);
   digitalWrite(LeftMotorForward, LOW);
   digitalWrite(RightMotorBackward, LOW);
+  analogWrite(ENA, ABS);
+  analogWrite(ENB, ABS);
   delay(duration);
   digitalWrite(LeftMotorForward, HIGH);
   digitalWrite(RightMotorForward, HIGH);
