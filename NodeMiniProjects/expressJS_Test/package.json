@@ -9,7 +9,7 @@
   "author": "Angelo Rafael recio",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
+    "express": "^4.21.1",
     "nodemon": "^2.0.21"
   }
 }
